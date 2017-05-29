@@ -1,0 +1,30 @@
+neues repo anlegen
+git init
+
+status checken
+git status
+
+elemente stagen
+git add .
+
+elemente commiten
+git commit -m "message"
+
+remote repo in neuen ordner kloenen
+git clone url
+
+zusätzliche branches laden
+git checkout --track origin/branchname
+
+neuen branch anlegen
+git checkout -b branchname
+
+branch wechseln
+git checkout branchname 
+
+existierendes repository hochladen
+git remote add origin https://github.com/dermetabolist/TexturePractice.git
+git push -u origin master
+
+gitignore laden
+git add .gitignore
