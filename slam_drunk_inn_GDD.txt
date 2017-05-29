@@ -1,0 +1,217 @@
+**Slam Drunk Inn™**
+
+1. Executive Summary
+
+High Concept
+
+Auf einem Bein kann man nicht stehen. Vor allem dann, wenn man den beschissensten Tag seines Lebens hatte und sich so richtig abschießen möchte. Da hilft nur eines: Druckbetankung. 
+
+Mr. F. Lamingo hatte einen beschissenen Tag. Eigentlich will er sich nur noch im Slam Drunk Inn™ gepflegt besaufen. Aber du bist spät dran: In einer Minute ist Zapfenstreich. Du hast nur eine Möglichkeit um den Tag zu retten: Dir in 60 Sekunden so viele Drinks wie möglich hinter die Binde zu schütten. Prost.
+
+Story
+
+Specifications: 
+
+Genre: Geschicklichkeit
+Spieler: 1 Player / 2 Player
+Plattform: PC / Android
+
+Features
+
+USP
+- Humor
+
+Related Games
+
+
+Design Goals
+
+Stretch Goals
+01. Core Mechanic funktioniert
+02. Gameloop funktioniert
+03. Drunk State funktioniert
+04. Gameart + SoundFX fertig
+05. Game Prototype funktioniert
+
+(optional)
+06. Kombo Feature
+07. Courage Feature
+08. Smartphone-Portierung mit Sofort-Download für die Präsentation
+09. Multiplayer
+10. Freischaltbare Spielfiguren
+
+Learning Goals
+
+- Advanced Sprite-Animation
+- High Score List
+- Visual FX
+- Smartphone-Portierung
+
+Spielziel
+
+Sieg/Endbedingungen
+
+Singleplayer:
+
+Ende: Deine Gesundheit erreicht 0, du wirst bewusstlos.
+Zwischensieg: Habe einen neuen Highscore, wenn die Zeit abgelaufen ist.
+Sieg: Erreichhe >Nirvana, bevor die Zeit abgelaufen ist.
+
+Multiplayer:
+Ende: Der Spieler, dessen Gesundheit als erstes 0 erreicht, verliert.
+Sieg: Der Spieler, der nach Ablauf der Zeit am betrunkensten ist, gewinnt.
+
+
+2. User Interface
+
+UI Elements
+
+Drunk-o-Assist (nur im Zielmodus sichtbar):
+Zielhilfe, mit der auf das Glas gezielt wird.
+
+Drunk-o-Meter:
+Eine Skala, die den Drunk State anzeigt.
+
+(optional)
+
+Gorge-Gauge:
+Eine Skala, die anzeigt, wie hoch dein Courage-Wert momentan ist.
+
+Combo Counter:
+Zeigt an, wie hoch deine Combo-Wert momentan ist.
+
+High Score
+Der höchste, jemals erreicht Punktestand.
+
+Points Piler: 
+Der Punktezähler zeigt die bereits gesammelten
+
+Guidelines
+
+Key Map
+
+Knopf 1: 
+Hold: Auf Glas zielen
+Release: Trinken & Glas wegwerfen
+
+Screen Flow
+
+Menu Screen
+Single Player Screen
+
+(optional)
+
+Multiplayer Screen
+Screen Description
+
+Save / Load
+High Score Liste
+
+3. Core Mechanics
+
+Player Actions
+
+Aim
+Wenn Knopf 1 gehalten wird, erscheint der Drunk-o-Assist auf dem Tisch und zeigt mit Hilfe eines Cursors an, wohin man zielt. Der Cursor bewegt sich in Abhängigkeit von >Dizzyness & >Drunkness
+
+Release
+Wird Knopf 1 losgelassen, so schnellt der Kopf nach unten.
+
+Hit
+Wenn das Glas getroffen wird, wird das Glas im Maul festgehalten, der Kopf wieder nach oben bewegt. Der Drink wird getrunken und danach hinter sich weggeworfen.
+
+Miss
+Wird das Glas verfehlt, so schlägt der Kopf auf den Tisch und der Spieler wechselt in >Disoriented State.
+
+World
+
+Piling Points
+Für verschiedene Dinge werden Punkte addiert (im Verhältnis):
+- Glas trinken: 				(100pt - x pt Abstand vom Glas) * Combo Level
+- erreichen von Drunkness Level: 	500pt * Combo Level
+- erreichen von Gorge Level: 		250pt * Combo Level
+- Upgrade aktivieren: 			100pt * Combo Level
+
+Getting Drunk
+Addieren & Subtrahieren von Werten zur Variable >Drunkness. Sie startet bei 0. Für jedes getrunkene Glas wird ein Wert addiert, abhängig von der Treffergenauigkeit & Art des Alkohols. Bei 100% erreicht man >Reaching Nirvana. Kann durch Upgrades verändert werden.
+
+Getting Dizzy
+Addieren & Subtrahieren von Werten zur Variable >Dizzyness bei erfolgreichem Trinken. Für jedes getrunkene Glas wird ein Wert addiert. Definiert die Stärke des >Drunk Filters definiert und das >Aim beeinträchtigt.
+
+Drunk Filter
+Besteht aus einer Vielzahl verschiedener visuellen Effekten, die das Spiel behindern. Sie werden in Abhängigkeit von >Dizzyness zufällig aktiviert, ihre Stärke errechnet sich aus >Drunkness. 
+Bspw: Blur, Noise, Rotation, Colour Shifting, Time Shift
+
+Disoriented State
+Bewegungsunfähigkeit für x Sekunden nach >Miss.
+
+Gaining Time
+Für jedes neue Gorge Gauge-Level / Drunkness-Level wird ein Wert x zur Zeit addiert
+
+Reaching Nirvana
+Erreicht die Drunkness Wert 100% gehst du ins Nirvana über. Das Spiel ist beendet.
+
+Time Is Over
+Sinkt die Zeit auf 0 ist das Spiel verloren.
+
+
+(optional)
+
+Upgrades
+Für jedes Gorge Level kann ein Upgrade freigeschaltet werden. Upgrades können mehrfach verstärkt werden.
+
+Harder Drinks
+Alle mit den Drinks verbunden Werte werden erhöht.
+
+Slap In the Face
+Senkt den Dizzyness-Wert, versetzt aber in doppelten >Disoriented State
+
+Cold Shower
+Setzt Dizzyness auf 0, aber halbiert Drunkness
+
+Drink Espresso
+Steigert Gorge Gauge, aber auch Dizyness
+
+Eat a Pickle
+Senkt Dizzyness, aber auch Drunkness.
+
+Eat some Bread
+Senkt Dizzyness, aber auch Drunkness.
+
+
+4. Economy & Variables
+
+Time
+Definiert die noch verbleibende Zeit. Startet bei 60 Sekunden. 
+
+Combo Score
+Für jedes erfolgreich nacheinander getrunkene Glas wird ein Wert x zum Combo Counter addiert.
+
+Gorge Score
+Alle addierten Punkte werden ebenso zum Gorge Gauge addiert. Erreicht der Gorge Gauge 100%, kann ein Upgrade freigeschaltet werden.
+
+Gorge Gauge Level
+Erreicht der Gorge Gauge 100%, steigt das Level um 1 und ein Upgrade kann freigeschaltet werden.
+
+Drink Distance
+Die Distanz zwischen Glas & Kopf beim >Hit.
+
+Score
+Der insgesamt bisher erreichte Punktestand.
+
+High Score
+Der höchste jemals erreicht Punktestand.
+
+Drunkness
+Der aus >Getting Drunk errechnete Wert
+
+Dizzyness
+Der aus >Getting Dizzy errechnete Wert
+
+Alcohol Strength
+Gibt an, wieviel Punkte beim Trinken addiert werden.
+
+Level Progression
+
+
+Initial Setup
