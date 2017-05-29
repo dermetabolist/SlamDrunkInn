@@ -1,10 +1,8 @@
-**Slam Drunk Inn™**
+**SLAM DRUNK INN™**
 
 1. Executive Summary
 
 High Concept
-
-Auf einem Bein kann man nicht stehen. Vor allem dann, wenn man den beschissensten Tag seines Lebens hatte und sich so richtig abschießen möchte. Da hilft nur eines: Druckbetankung. 
 
 Mr. F. Lamingo hatte einen beschissenen Tag. Eigentlich will er sich nur noch im Slam Drunk Inn™ gepflegt besaufen. Aber du bist spät dran: In einer Minute ist Zapfenstreich. Du hast nur eine Möglichkeit um den Tag zu retten: Dir in 60 Sekunden so viele Drinks wie möglich hinter die Binde zu schütten. Prost.
 
@@ -20,6 +18,7 @@ Features
 
 USP
 - Humor
+- One-Button Controls
 
 Related Games
 
@@ -35,7 +34,7 @@ Stretch Goals
 
 (optional)
 06. Kombo Feature
-07. Courage Feature
+07. Upgrade Feature
 08. Smartphone-Portierung mit Sofort-Download für die Präsentation
 09. Multiplayer
 10. Freischaltbare Spielfiguren
@@ -55,7 +54,7 @@ Singleplayer:
 
 Ende: Deine Gesundheit erreicht 0, du wirst bewusstlos.
 Zwischensieg: Habe einen neuen Highscore, wenn die Zeit abgelaufen ist.
-Sieg: Erreichhe >Nirvana, bevor die Zeit abgelaufen ist.
+Sieg: Erreiche >Nirvana, bevor die Zeit abgelaufen ist.
 
 Multiplayer:
 Ende: Der Spieler, dessen Gesundheit als erstes 0 erreicht, verliert.
@@ -86,12 +85,11 @@ Der höchste, jemals erreicht Punktestand.
 Points Piler: 
 Der Punktezähler zeigt die bereits gesammelten
 
-Guidelines
 
 Key Map
 
 Knopf 1: 
-Hold: Auf Glas zielen
+Hold: Auf Glas zielen & Restart (Game Over Screen)
 Release: Trinken & Glas wegwerfen
 
 Screen Flow
@@ -108,6 +106,10 @@ Save / Load
 High Score Liste
 
 3. Core Mechanics
+
+Core Loop
+
+Das Spiel startet im >Initial Setup. Der Counter zählt herunter und das Spiel beginnt. Die Zeit läuft ab. Der Spieler drückt Knopf 1 um das Glas zu trinken. Er trinkt etliche Gläser, seine >Drunkness & >Dizzyness steigt. >Drunk Filter setzen ein. Er aktiviert einige Upgrades und verlängert das Spiel über die 60 Sekunden hinaus. Aber die Zeit läuft ab. "Game Over" erscheint auf dem Bildschirm. Ein längerer Tastendruck startet das Spiel erneut.
 
 Player Actions
 
@@ -215,3 +217,5 @@ Level Progression
 
 
 Initial Setup
+
+Der Flamingo befindet sich links, rechts neben ihm ein Tisch, ein Glas wird von rechts ins Bild geschoben. >Drunkness, >Dizzyness, >Combo Score, >Gorge Score & >Score befinden sich bei 0. Die Zeit steht bei 60 Sekunden. Ein Counter erscheint: 3,2,1, GET HAMMERED.
