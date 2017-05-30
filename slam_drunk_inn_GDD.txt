@@ -1,4 +1,4 @@
-**SLAM DRUNK INN™**
+﻿**SLAM DRUNK INN™**
 
 1. Executive Summary
 
@@ -41,7 +41,8 @@ Stretch Goals
 
 Learning Goals
 
-- Advanced Sprite-Animation
+- Kontur-Shader
+- Minimal Filesize
 - High Score List
 - Visual FX
 - Smartphone-Portierung
