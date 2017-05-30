@@ -1,13 +1,22 @@
-SLAM DRUNK INN
+﻿SLAM DRUNK INN
 - Sidenotes -
 
-Visual Style 
+Juice
 
 - Ridiculous Fishing abwandeln?
+- wenn Tisch getroffen wird Camera vibrieren + Bass-Sound + bunte Farben
+- Musik Pitch & Tempo ab bestimmten Drunkness-Wert ebenfalls verändern
+
+Musik Inspo
+https://soundcloud.com/peachkellipop/princess-castle-1988
+https://soundcloud.com/laffethefox/laffe-the-fox-feat-rymdkraft-extreme-krocket
+https://soundcloud.com/tentoesturbo/sets/kupa-guacamayas-ep
+https://soundcloud.com/kataplexia_au/beast
 
 Umsetzung
 
 - Outline-Shader für Comic-Look
+
 
 Drunkness FX
 
