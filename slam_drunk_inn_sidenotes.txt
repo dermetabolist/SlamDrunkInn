@@ -1,0 +1,18 @@
+SLAM DRUNK INN
+- Sidenotes -
+
+Visual Style 
+
+- Ridiculous Fishing abwandeln?
+
+Umsetzung
+
+- Outline-Shader für Comic-Look
+
+Drunkness FX
+
+- Zielpfeil verdoppelt sich und wird dadurch schwerer vorherzusagen
+
+Mechanics
+
+- wenn man den Tisch 3x kurz hintereinander trifft, wechselt man in Disoriented State (um Button-Mashing zu verhindern)
