@@ -41,11 +41,11 @@ Stretch Goals
 
 Learning Goals
 
+- Development for mobile
 - Kontur-Shader
 - Minimal Filesize
 - High Score List
 - Visual FX
-- Smartphone-Portierung
 
 Spielziel
 
