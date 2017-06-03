@@ -23,5 +23,7 @@ public class AimAssistMovement : MonoBehaviour {
 
             transform.position = Vector3.Lerp(pos1 + DizzyFactor_Range, pos2 + DizzyFactor_Range, Mathf.PingPong(Time.time * speed * DizzyFactor_Speed, 1.0f));
         }
+    
+    
 }
 

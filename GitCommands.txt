@@ -28,3 +28,9 @@ git push -u origin master
 
 gitignore laden
 git add .gitignore
+
+remote repository checken?
+git fetch origin branch-name
+
+remote repository downloaden? 
+git pull origin branch-name

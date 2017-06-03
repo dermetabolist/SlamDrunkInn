@@ -5,15 +5,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     float speed = .5f;
+    float rotSpeed = 10f;
+    Vector3 RotatePoint;
 
-    public Transform Target;
+    public AudioSource Audio;
+    public AudioClip HitTable;
+    public AudioClip HitGlas;
 
     //Gameobject Glas
     //GameObject AimPoint
 
     private void Start()
     {
-        
+        RotatePoint = new Vector3(0, 0, 30);
     }
 
     void Update()
@@ -23,13 +27,41 @@ public class PlayerMovement : MonoBehaviour {
         //wenn Button1 gedrückt wird, bewege dich zum ziel
         if(Input.GetButton("Fire1"))
         {
-            Quaternion rotation = Quaternion.LookRotation
-            (Target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-            transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+            //wenn weder "tisch getroffen" noch "glas im Bereich"
+            if (PlayerHeadCollision.Hit_Glas == false && PlayerHeadCollision.Hit_Table == false)
+            {
+                transform.Rotate(RotatePoint * rotSpeed * Time.deltaTime);
+            }
+            
+            //wenn "tisch getroffen"
+                //führe treffer-reaktion aus
+                //bewege kopf zurück
+            if(PlayerHeadCollision.Hit_Table == true)
+            {
+                //Audio.PlayOneShot(HitTable, 1f);
+                transform.Rotate(RotatePoint * -rotSpeed * Time.deltaTime);
+
+            }
+
+            //wenn "glas im bereich"
+            //verlangsame zeit
+            //wenn knopf losgelassen wird
+            //führe treffer-reaktion aus
+            //bewege kopf + glas zurück
+            //schmeiße glas weg
+            //kopf in ausgangsposition
+            if (PlayerHeadCollision.Hit_Glas == true)
+            {
+                Time.timeScale = .5f;
+            }
         }
+        else
+        {
+            //bewege kopf zurück zu ausgangsposition
+        }
+
         // Aim/Hit/Miss
             //wenn Button 1 released
-                //MoveToAim();
                 //wenn Axis Horizontal bewegt wird
                     //berechne DrunknessFactor_Movement
                         //Random Wert aus Min + Max
@@ -89,13 +121,8 @@ public class PlayerMovement : MonoBehaviour {
                     //Gorge Level +1
                 
     }
-
-    void MoveToAim()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(transform.position.y >= 0.25)
-        {
-            transform.Translate(Vector2.left * speed);
-        }
-    }
 
+    }
 }

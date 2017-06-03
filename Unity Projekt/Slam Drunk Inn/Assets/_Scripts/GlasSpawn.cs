@@ -21,4 +21,8 @@ public class GlasSpawn : MonoBehaviour {
             timer = 0f;
         }
     }
+
+    
+
+    
 }
