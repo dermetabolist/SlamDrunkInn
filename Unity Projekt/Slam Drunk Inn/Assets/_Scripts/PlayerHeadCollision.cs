@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHeadCollision : MonoBehaviour {
 
     public static bool Hit_Table = false;
-    public static bool Hit_Glas = false;
+    public static bool Hit_Glas_InArea = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,13 +16,13 @@ public class PlayerHeadCollision : MonoBehaviour {
 
         if(collision.tag == "Glas")
         {
-            Hit_Glas = true;
+            Hit_Glas_InArea = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Hit_Glas = false;
+        Hit_Glas_InArea = false;
         Hit_Table = false;
     }
 }

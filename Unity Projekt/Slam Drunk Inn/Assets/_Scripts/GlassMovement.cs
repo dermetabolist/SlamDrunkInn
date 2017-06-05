@@ -24,6 +24,11 @@ public class GlassMovement : MonoBehaviour {
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
+        if(PlayerMovement2.Hit_Glas == true)
+        {
+            //mache glas zum child
+        }
+
         if(TouchedFloor == true)
         {
             Timer += Time.deltaTime;
@@ -37,6 +42,7 @@ public class GlassMovement : MonoBehaviour {
     //
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
         if (collision.tag == "Edge")
         {
             audio.PlayOneShot(swoosh, 1f);
@@ -47,5 +53,7 @@ public class GlassMovement : MonoBehaviour {
             audio.PlayOneShot(shatter, 1f);
             TouchedFloor = true;       
         }
+
+
     }
 }

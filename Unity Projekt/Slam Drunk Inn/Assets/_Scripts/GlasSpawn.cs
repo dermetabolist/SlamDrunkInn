@@ -14,12 +14,16 @@ public class GlasSpawn : MonoBehaviour {
 	
 	void Update ()
     {
-        timer += Time.deltaTime;
-        if(timer >= 1)
+        if(StaticHolder.TimeOver == false)
         {
-            Instantiate(GlassPrefab, transform.position, Quaternion.identity);
-            timer = 0f;
+            timer += Time.deltaTime;
+            if (timer >= 1)
+            {
+                Instantiate(GlassPrefab, transform.position, Quaternion.identity);
+                timer = 0f;
+            }
         }
+        
     }
 
     

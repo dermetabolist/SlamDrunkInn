@@ -8,12 +8,13 @@ public class PlayerMovement : MonoBehaviour {
     float rotSpeed = 10f;
     Vector3 RotatePoint;
 
+    public bool Hit_Glas = false;
+
     public AudioSource Audio;
     public AudioClip HitTable;
     public AudioClip HitGlas;
 
-    //Gameobject Glas
-    //GameObject AimPoint
+    
 
     private void Start()
     {
@@ -23,36 +24,28 @@ public class PlayerMovement : MonoBehaviour {
     void Update()
     {
         
-        
-        //wenn Button1 gedrückt wird, bewege dich zum ziel
+        //wenn Button1 gedrückt wird, rotiere vorwärts
         if(Input.GetButton("Fire1"))
         {
-            //wenn weder "tisch getroffen" noch "glas im Bereich"
-            if (PlayerHeadCollision.Hit_Glas == false && PlayerHeadCollision.Hit_Table == false)
-            {
-                transform.Rotate(RotatePoint * rotSpeed * Time.deltaTime);
-            }
+            transform.Rotate(RotatePoint * rotSpeed * Time.deltaTime);
+            
             
             //wenn "tisch getroffen"
                 //führe treffer-reaktion aus
                 //bewege kopf zurück
-            if(PlayerHeadCollision.Hit_Table == true)
+            if(PlayerHeadCollision.Hit_Table == true || PlayerHeadCollision.Hit_Glas_InArea == true)
             {
                 //Audio.PlayOneShot(HitTable, 1f);
                 transform.Rotate(RotatePoint * -rotSpeed * Time.deltaTime);
-
             }
 
-            //wenn "glas im bereich"
-            //verlangsame zeit
-            //wenn knopf losgelassen wird
-            //führe treffer-reaktion aus
-            //bewege kopf + glas zurück
-            //schmeiße glas weg
-            //kopf in ausgangsposition
-            if (PlayerHeadCollision.Hit_Glas == true)
+            if (PlayerHeadCollision.Hit_Glas_InArea == true) //wenn "glas im bereich"
             {
-                Time.timeScale = .5f;
+                Time.timeScale = .5f; //verlangsame zeit
+                if (Input.GetButtonUp("Fire1")) //und wenn knopf losgelassen wird
+                {
+                    Hit_Glas = true;
+                }
             }
         }
         else

@@ -14,5 +14,7 @@ public class StaticHolder : MonoBehaviour {
     public static float Drunkness = 0f;
     public static float Dizzyness = 0f;
     public static float Score = 0f;
+
+    public static bool TimeOver = false;
     
 }
