@@ -20,11 +20,6 @@ public class PlayerMovement2 : MonoBehaviour {
         if (Input.GetButtonUp("Fire1")) //wenn Knopf losgelassen wird
         {
             _RotateDown = false;
-
-            //if (PlayerHeadCollision.Hit_Glas_InArea == true) //und der kopf im Glasbereich ist
-            //{
-            //    Hit_Glas = true;
-            //}
         }
 
         if (_RotateDown)

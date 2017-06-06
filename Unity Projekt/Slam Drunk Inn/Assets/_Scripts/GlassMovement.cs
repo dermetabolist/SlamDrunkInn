@@ -19,6 +19,7 @@ public class GlassMovement : MonoBehaviour {
     //soundkram
     public AudioClip swoosh;
     public AudioClip shatter;
+    public AudioClip swallow;
     public AudioSource audio;
 
 	void Start ()
@@ -42,6 +43,9 @@ public class GlassMovement : MonoBehaviour {
             {
                 this.transform.parent = Head.transform; //mache glas zum child
                 speed = 0f;
+                StaticHolder.Drinks++;
+                StaticHolder.DrunknessCounter++;
+                audio.PlayOneShot(swallow, 0.75f);
                 rb2D.simulated = false;
                 transform.position = new Vector3(-1, 0, 0);
                 DestroyGameObject = true;
@@ -51,8 +55,9 @@ public class GlassMovement : MonoBehaviour {
         if (DestroyGameObject == true)
         {
             Timer += Time.deltaTime;
-            if (Timer > 2)
+            if (Timer > 1)
             {
+                
                 Destroy(gameObject);
             }
         }
