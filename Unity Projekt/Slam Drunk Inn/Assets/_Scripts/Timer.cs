@@ -18,8 +18,6 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        print(StaticHolder.TimeOver);
-
         if(TimeLeft > 0)
         {
             TimeLeft -= Time.deltaTime;

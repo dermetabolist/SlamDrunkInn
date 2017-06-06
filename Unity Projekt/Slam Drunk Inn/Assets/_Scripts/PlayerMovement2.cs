@@ -10,6 +10,7 @@ public class PlayerMovement2 : MonoBehaviour {
 
     public void Update()
     {
+        
 
         if (Input.GetButton("Fire1") && Hit_Glas == false)
         {
@@ -20,10 +21,10 @@ public class PlayerMovement2 : MonoBehaviour {
         {
             _RotateDown = false;
 
-            if (PlayerHeadCollision.Hit_Glas_InArea == true) //und der kopf im Glasbereich ist
-            {
-                Hit_Glas = true;
-            }
+            //if (PlayerHeadCollision.Hit_Glas_InArea == true) //und der kopf im Glasbereich ist
+            //{
+            //    Hit_Glas = true;
+            //}
         }
 
         if (_RotateDown)
