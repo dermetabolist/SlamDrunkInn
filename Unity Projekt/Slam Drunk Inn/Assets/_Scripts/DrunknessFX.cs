@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.PostProcessing;
 
 [RequireComponent(typeof(PostProcessingBehaviour))]
@@ -12,21 +13,27 @@ public class DrunknessFX : MonoBehaviour {
     float Random_aperture;
     float Random_bloom;
     float Random_Time;
+    float Random_TimeScale;
+    float Random_Pitch;
 
     float Timer = 0f;
+
+    public AudioMixer Master;
 
     private void Start()
     {
         Random_Time = 5f;
+        Random_TimeScale = 1f;
         Random_aperture = 2f;
         Random_bloom = 0f;
         Random_intensity = 0f;
+        Random_Pitch = 100f;
+
     }
 
     void Update()
     {
-        print("intensity:" + " " + Drunkness.chromaticAberration.settings.intensity);
-
+        
         Timer += Time.deltaTime;
         if(Timer > Random_Time)
         {
@@ -34,13 +41,15 @@ public class DrunknessFX : MonoBehaviour {
             Random_bloom = Random.Range(0f, (StaticHolder.DrunknessLevel));
             Random_aperture = Random.Range(2f - ((StaticHolder.DrunknessLevel) / 5f), 2f);
             Random_Time = Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+            Random_TimeScale = Random.Range(1f - ((StaticHolder.DrunknessLevel)/10f), 1f + ((StaticHolder.DrunknessLevel) / 10f));
+            Random_Pitch = ((Random_TimeScale) * 100);
             Timer = 0f;
         }
         
-        
-
         ChromaticAbberation();
         DepthOfField();
+        TimeScale();
+        SetPitch(1);
     }
 
     void ChromaticAbberation()
@@ -63,4 +72,17 @@ public class DrunknessFX : MonoBehaviour {
         Bloom.bloom.intensity = 0 + Random_intensity;
         Drunkness.bloom.settings = Bloom;
     }
+
+    void TimeScale()
+    {
+        Time.timeScale = Random_TimeScale;
+    }
+
+    public void SetPitch(float Pitch)
+    {
+        Pitch = 0.5f;
+        Master.SetFloat("MasterPitch", 0.1f);
+    }
+
+    
 }
