@@ -47,6 +47,7 @@ public class GlassMovement : MonoBehaviour {
                 this.transform.parent = Head.transform; //mache glas zum child
                 speed = 0f;
                 StaticHolder.Drinks++;
+                StaticHolder.Combo++;
                 StaticHolder.DrunknessCounter++;
                 audio.PlayOneShot(swallow, 0.75f);
                 rb2D.simulated = false;

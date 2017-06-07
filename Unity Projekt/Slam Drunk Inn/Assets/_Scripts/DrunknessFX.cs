@@ -26,6 +26,21 @@ public class DrunknessFX : MonoBehaviour {
 
     Color Random_Col;
 
+    void OnEnable()
+    {
+        var behaviour = GetComponent<PostProcessingBehaviour>();
+
+        if (behaviour.profile == null)
+        {
+            enabled = false;
+            return;
+        }
+
+        Drunkness = Instantiate(behaviour.profile);
+        behaviour.profile = Drunkness;
+    }
+
+
     private void Start()
     {
         Random_Time = 5f;
@@ -61,7 +76,7 @@ public class DrunknessFX : MonoBehaviour {
             {
                 Random_intensity = Random.Range(0f, ((StaticHolder.DrunknessLevel) / 10f));
                 Random_bloom = Random.Range(0f, (StaticHolder.DrunknessLevel));
-                Random_aperture = Random.Range(Random_aperture - ((StaticHolder.DrunknessLevel) / 5f), Random_aperture);
+                Random_aperture = Random.Range(Random_aperture - ((StaticHolder.DrunknessLevel) / 10f), Random_aperture);
                 Random_Time = Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
                 Random_TimeScale = Random.Range(1f - ((StaticHolder.DrunknessLevel) / 10f), 1f + ((StaticHolder.DrunknessLevel) / 10f));
                 Random_Pitch = ((Random_TimeScale));
@@ -74,14 +89,26 @@ public class DrunknessFX : MonoBehaviour {
             Time.timeScale = 1f;
             Random_TimeScale = 1;
             Random_intensity = 0;
-            Random_aperture = 2;
+            Random_aperture = 3;
             Random_bloom = 0f;
         }
 
-        ChromaticAbberation();
-        DepthOfField();
-        TimeScale();
-        SetPitch(1);
+        if(StaticHolder.DrunknessLevel > 1)
+        {
+            ChromaticAbberation();
+        }
+        if (StaticHolder.DrunknessLevel > 2)
+        {
+            DepthOfField();
+        }
+        if (StaticHolder.DrunknessLevel > 3)
+        {
+            TimeScale();
+            SetPitch(1);
+        }
+        
+        
+        
 
 
     }

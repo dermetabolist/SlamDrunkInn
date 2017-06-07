@@ -16,10 +16,12 @@ public class CamShakeSimple : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        print("collision fired");
         aud.PlayOneShot(hit, 1f);
         shakeAmt = .05f;
         InvokeRepeating("CameraShake", 0, .01f);
         Invoke("StopShaking", .5f);
+        StaticHolder.Combo = 0;
     }
 
     void CameraShake()

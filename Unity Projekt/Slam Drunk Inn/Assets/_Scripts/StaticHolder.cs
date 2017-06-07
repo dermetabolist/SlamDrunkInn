@@ -7,10 +7,11 @@ public class StaticHolder : MonoBehaviour {
     public static int Drinks = 0;
     public static int DrunknessCounter = 0;
     public static int DrunknessLevel = 0;
+    public static int Combo = 0;
 
     public static int DizzynessLevel = 0;
     public static int GorgeLevel = 0;
-    public static int Combo = 0;
+    
     public static int Time = 60;
     public static int Miss = 0;
 

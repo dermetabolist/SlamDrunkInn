@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Timer : MonoBehaviour {
 
     public Text counterText;
-    public float TimeLeft = 10f;
+    public static float TimeLeft = 60f;
     
 
 	// Use this for initialization
