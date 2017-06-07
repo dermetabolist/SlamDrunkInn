@@ -10,6 +10,9 @@ public class GlassMovement : MonoBehaviour {
     bool _DestroyGameObject = false;
     float Timer;
     float _Timer;
+    float thrust = 5f;
+
+
 
     bool InArea = false;
 
@@ -25,6 +28,7 @@ public class GlassMovement : MonoBehaviour {
 	void Start ()
     {
         Timer = 0f;
+        _Timer = 0f;
         DestroyGameObject = false;
         _DestroyGameObject = false;
         Head = GameObject.Find("Head");
@@ -34,8 +38,7 @@ public class GlassMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime); //normale vorwärtsbewegung
 
         if(InArea == true)
         {
@@ -55,18 +58,19 @@ public class GlassMovement : MonoBehaviour {
         if (DestroyGameObject == true)
         {
             Timer += Time.deltaTime;
-            if (Timer > 1)
+            if (Timer > .5f)
             {
-                
+                //this.transform.parent = null;
+                //rb2D.simulated = true;
+                //transform.Translate(Vector2.up * thrust * Time.deltaTime);
                 Destroy(gameObject);
             }
         }
 
         if (_DestroyGameObject == true)
         {
-            _Timer = 0f;
             _Timer += Time.deltaTime;
-            if (_Timer > 1)
+            if (_Timer > 1.5)
             {
                 Destroy(gameObject);
             }
@@ -76,8 +80,13 @@ public class GlassMovement : MonoBehaviour {
     //
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-        if(collision.tag == "Head")
+        if (collision.tag == "Floor")
+        {
+            audio.PlayOneShot(shatter, 0.75f);
+            _DestroyGameObject = true;
+        }
+
+        if (collision.tag == "Head")
         {
             InArea = true;
         }
@@ -87,11 +96,7 @@ public class GlassMovement : MonoBehaviour {
             audio.PlayOneShot(swoosh, 0.75f);
         }
 
-        if (collision.tag == "Floor")
-        {
-            audio.PlayOneShot(shatter, 0.75f);
-            _DestroyGameObject = true;       
-        }
+        
 
 
     }

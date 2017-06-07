@@ -34,22 +34,36 @@ public class DrunknessFX : MonoBehaviour {
     void Update()
     {
         
-        Timer += Time.deltaTime;
-        if(Timer > Random_Time)
+        if(StaticHolder.TimeOver == false) //führe alles aus, solange die zeit abläuft
         {
-            Random_intensity = Random.Range(0f, ((StaticHolder.DrunknessLevel) / 10f));
-            Random_bloom = Random.Range(0f, (StaticHolder.DrunknessLevel));
-            Random_aperture = Random.Range(2f - ((StaticHolder.DrunknessLevel) / 5f), 2f);
-            Random_Time = Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
-            Random_TimeScale = Random.Range(1f - ((StaticHolder.DrunknessLevel)/10f), 1f + ((StaticHolder.DrunknessLevel) / 10f));
-            Random_Pitch = ((Random_TimeScale) * 100);
-            Timer = 0f;
+            Timer += Time.deltaTime;
+            if (Timer > Random_Time)
+            {
+                Random_intensity = Random.Range(0f, ((StaticHolder.DrunknessLevel) / 10f));
+                Random_bloom = Random.Range(0f, (StaticHolder.DrunknessLevel));
+                Random_aperture = Random.Range(2f - ((StaticHolder.DrunknessLevel) / 5f), 2f);
+                Random_Time = Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+                Random_TimeScale = Random.Range(1f - ((StaticHolder.DrunknessLevel) / 10f), 1f + ((StaticHolder.DrunknessLevel) / 10f));
+                Random_Pitch = ((Random_TimeScale));
+                Timer = 0f;
+            } 
         }
-        
+
+        else //normalisiere alle werte
+        {
+            Time.timeScale = 1f;
+            Random_TimeScale = 1;
+            Random_intensity = 0;
+            Random_aperture = 2;
+            Random_bloom = 0f;
+        }
+
         ChromaticAbberation();
         DepthOfField();
         TimeScale();
         SetPitch(1);
+
+
     }
 
     void ChromaticAbberation()
@@ -80,8 +94,8 @@ public class DrunknessFX : MonoBehaviour {
 
     public void SetPitch(float Pitch)
     {
-        Pitch = 0.5f;
-        Master.SetFloat("MasterPitch", 0.1f);
+        //Pitch = 0.5f;
+        Master.SetFloat("MasterPitch", Random_TimeScale);
     }
 
     
