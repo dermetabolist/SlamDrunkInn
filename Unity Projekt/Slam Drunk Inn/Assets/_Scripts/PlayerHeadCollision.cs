@@ -7,10 +7,13 @@ public class PlayerHeadCollision : MonoBehaviour {
     public static bool Hit_Table = false;
     public static bool Hit_Glas_InArea = false;
 
+   
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Table")
         {
+            
             Hit_Table = true;
         }
 
@@ -25,4 +28,7 @@ public class PlayerHeadCollision : MonoBehaviour {
         Hit_Glas_InArea = false;
         Hit_Table = false;
     }
+
+    
+    
 }

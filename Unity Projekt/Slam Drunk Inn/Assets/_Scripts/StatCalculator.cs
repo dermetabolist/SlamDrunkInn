@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatCalculator : MonoBehaviour {
+public class StatCalculator : MonoBehaviour
+{
+    public AudioSource aud;
+    public AudioClip Timeget;
 
     private void Update()
     {
@@ -14,6 +17,8 @@ public class StatCalculator : MonoBehaviour {
         if(StaticHolder.DrunknessCounter >= 10)
         {
             StaticHolder.DrunknessLevel++;
+            StaticHolder.Time += 5;
+            aud.PlayOneShot(Timeget, 0.75f);
             StaticHolder.DrunknessCounter = 0;
         }
     }

@@ -33,14 +33,7 @@ public class PlayerMovement2 : MonoBehaviour {
             RotateUp();
         }
 
-        //if (PlayerHeadCollision.Hit_Glas_InArea) //wenn im Glasbereich
-        //{
-        //    Time.timeScale = .5f; //verlangsame zeit
-        //}
-        //else //ansonsten
-        //{
-        //    Time.timeScale = 1f; //ist die zeit normal
-        //}
+        
     }
 
     void RotateUp()
@@ -64,4 +57,13 @@ public class PlayerMovement2 : MonoBehaviour {
             transform.eulerAngles = Vector3.MoveTowards(transform.rotation.eulerAngles, to, (rotSpeed * 100) * Time.deltaTime);
         }
     }
+
+    void HitTable()
+    {
+        //shüttel kamera für .5 sekunden
+        //verändere die farben zufällig für .5 sekunden
+        //ziehe einen energiepunkt ab
+    }
+
+    
 }
