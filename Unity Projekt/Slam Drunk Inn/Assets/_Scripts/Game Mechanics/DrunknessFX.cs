@@ -100,12 +100,10 @@ public class DrunknessFX : MonoBehaviour {
         if (StaticHolder.DrunknessLevel > 2)
         {
             DepthOfField();
-        }
-        if (StaticHolder.DrunknessLevel > 3)
-        {
             TimeScale();
             SetPitch(1);
         }
+        
         
         
         

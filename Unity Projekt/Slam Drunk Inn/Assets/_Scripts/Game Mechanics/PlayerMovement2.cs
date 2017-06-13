@@ -13,27 +13,31 @@ public class PlayerMovement2 : MonoBehaviour {
     public void Update()
     {
         
-
-        if (Input.GetButton("Fire1") && Hit_Glas == false)
+        if(StaticHolder.Disoriented == false)
         {
-            _RotateDown = true;
-        }
+            if (Input.GetButton("Fire1") && Hit_Glas == false)
+            {
+                _RotateDown = true;
+            }
 
-        if (Input.GetButtonUp("Fire1")) //wenn Knopf losgelassen wird
-        {
-            _RotateDown = false;
-        }
+            if (Input.GetButtonUp("Fire1")) //wenn Knopf losgelassen wird
+            {
+                _RotateDown = false;
+            }
 
-        if (_RotateDown)
-        {
-            RotateDown();
+            if (_RotateDown)
+            {
+                RotateDown();
+            }
+            else
+            {
+                RotateUp();
+            }
         }
         else
         {
-            RotateUp();
+            print("I'm soooo dizzy :(");
         }
-
-        
     }
 
     void RotateUp()
@@ -42,9 +46,7 @@ public class PlayerMovement2 : MonoBehaviour {
 
         if (Vector3.Distance(transform.eulerAngles, to) > 0.01f)
         {
-            transform.eulerAngles = Vector3.Slerp(transform.rotation.eulerAngles, to, rotSpeed * Time.deltaTime);
-            
-            
+            transform.eulerAngles = Vector3.Slerp(transform.rotation.eulerAngles, to, rotSpeed * Time.deltaTime);  
         }
     }
 
@@ -57,13 +59,5 @@ public class PlayerMovement2 : MonoBehaviour {
             transform.eulerAngles = Vector3.MoveTowards(transform.rotation.eulerAngles, to, (rotSpeed * 100) * Time.deltaTime);
         }
     }
-
-    void HitTable()
-    {
-        //shüttel kamera für .5 sekunden
-        //verändere die farben zufällig für .5 sekunden
-        //ziehe einen energiepunkt ab
-    }
-
     
 }

@@ -48,7 +48,8 @@ public class GlassMovement : MonoBehaviour {
                 speed = 0f;
                 StaticHolder.Drinks++;
                 StaticHolder.Combo++;
-                StaticHolder.DrunknessCounter++;
+                StaticHolder.Drinks_sinceLevelStart++;
+                StaticHolder.Score += 100 * StaticHolder.Combo;
                 audio.PlayOneShot(swallow, 0.75f);
                 rb2D.simulated = false;
                 transform.position = new Vector3(-1, 0, 0);

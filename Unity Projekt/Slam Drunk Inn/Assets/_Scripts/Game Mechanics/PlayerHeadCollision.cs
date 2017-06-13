@@ -14,7 +14,6 @@ public class PlayerHeadCollision : MonoBehaviour {
         if(collision.tag == "Table")
         {
             Hit_Table = true;
-            
         }
 
         if(collision.tag == "Glas")
