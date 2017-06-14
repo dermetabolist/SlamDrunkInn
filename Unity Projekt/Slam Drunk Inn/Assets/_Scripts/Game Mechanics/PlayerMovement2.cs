@@ -13,7 +13,7 @@ public class PlayerMovement2 : MonoBehaviour {
     public void Update()
     {
         
-        if(StaticHolder.Disoriented == false)
+        if(StaticHolder.Disoriented == false && StaticHolder.TimeOver == false)
         {
             if (Input.GetButton("Fire1") && Hit_Glas == false)
             {
@@ -34,10 +34,7 @@ public class PlayerMovement2 : MonoBehaviour {
                 RotateUp();
             }
         }
-        else
-        {
-            print("I'm soooo dizzy :(");
-        }
+        
     }
 
     void RotateUp()

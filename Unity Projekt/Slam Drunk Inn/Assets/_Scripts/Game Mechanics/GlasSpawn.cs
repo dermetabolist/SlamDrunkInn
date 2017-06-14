@@ -17,7 +17,7 @@ public class GlasSpawn : MonoBehaviour {
         if(StaticHolder.TimeOver == false)
         {
             timer += (Time.deltaTime * Time.timeScale);
-            float TimeMax = (1 - (Time.time / 100));
+            float TimeMax = (1 - (Time.timeSinceLevelLoad / 150));
             if (timer >= TimeMax)
             {
                 Instantiate(GlassPrefab, transform.position, Quaternion.identity);

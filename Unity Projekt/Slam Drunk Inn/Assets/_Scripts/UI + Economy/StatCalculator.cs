@@ -14,6 +14,13 @@ public class StatCalculator : MonoBehaviour
 
     private void Start()
     {
+        //werte für Reset nach Game Over
+        StaticHolder.TimeOver = false;
+        StaticHolder.DrunknessLevel = 0;
+        StaticHolder.Drinks_sinceLevelStart = 0;
+        StaticHolder.Combo = 0;
+        UI_Timer.TimeLeft = 60;
+
         StaticHolder.DrunknessLevel_threshold = 10;
     }
 
@@ -69,14 +76,18 @@ public class StatCalculator : MonoBehaviour
 
     void DrunknessLevelCalculator()
     {
-
-        if (StaticHolder.Drinks_sinceLevelStart >= StaticHolder.DrunknessLevel_threshold)
+        
+        if(StaticHolder.Drinks_sinceLevelStart > 0)
         {
-            StaticHolder.DrunknessLevel++;
-            StaticHolder.Score += 50 * StaticHolder.Combo;
-            UI_Timer.TimeLeft += TimeAdd;
-            aud.PlayOneShot(Timeget, 0.75f);
-            StaticHolder.Drinks_sinceLevelStart = 0;
+            if (StaticHolder.Drinks_sinceLevelStart >= StaticHolder.DrunknessLevel_threshold)
+            {
+                StaticHolder.DrunknessLevel++;
+                StaticHolder.Score += 50 * StaticHolder.Combo;
+                UI_Timer.TimeLeft += TimeAdd;
+                aud.PlayOneShot(Timeget, 0.75f);
+                StaticHolder.Drinks_sinceLevelStart = 0;
+            }
         }
+        
     }
 }

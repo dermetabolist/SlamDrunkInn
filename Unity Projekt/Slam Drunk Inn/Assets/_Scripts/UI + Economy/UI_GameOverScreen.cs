@@ -1,32 +1,112 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI_GameOverScreen : MonoBehaviour {
 
-    Vector3 startMarker;
-    Vector3 endMarker;
+    float lerpTime = 0.5f;
+    float currentLerpTime;
 
-    public float speed = 5.0F;
-    private float startTime;
-    private float journeyLength;
+    float moveDistance = -12f;
+
+    Vector3 startPos;
+    Vector3 endPos;
+
+    public AudioSource aud;
+    public AudioClip scratch;
+    bool playsound = true;
+
+    float Timer = 0f;
+    float _Timer = 0f;
+
+    public Image Button_Back;
+    public Image Button_Back_bg;
+    public Text Button_Back_Text;
 
     void Start()
     {
-        startMarker = new Vector3(0, 12, 0);
-        endMarker = new Vector3(0, 0.45f, 0);
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+        Button_Back.canvasRenderer.SetAlpha(0.0f);
+        Button_Back.fillAmount = 0f;
+        Button_Back_bg.canvasRenderer.SetAlpha(0.0f);
+        Button_Back_Text.canvasRenderer.SetAlpha(0.0f);
+
+
+        startPos = transform.position;
+        endPos = transform.position + transform.up * moveDistance;
     }
 
     void Update()
     {
-        if(StaticHolder.TimeOver)
+        //back button input
+        BackButtonControl();
+       
+        //background lerp
+        if (StaticHolder.TimeOver == true)
         {
-            float distCovered = (Time.time - startTime) * speed;
-            float fracJourney = distCovered / journeyLength;
-            transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
+            
+            currentLerpTime += Time.deltaTime;
+            if (currentLerpTime > lerpTime)
+            {
+                currentLerpTime = lerpTime;
+            }
+
+            //lerp!
+
+            float t = currentLerpTime / lerpTime;
+            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            float perc = currentLerpTime / lerpTime;
+            transform.position = Vector3.Lerp(startPos, endPos, t);
         }
-        
+
+        //play sound effect
+        if(StaticHolder.TimeOver == true && playsound == true)
+        {
+            aud.PlayOneShot(scratch, 0.75f);
+            playsound = false;
+        }
+
+        //blende button ein
+        if(StaticHolder.TimeOver == true)
+        {
+            Timer += Time.deltaTime;
+            if(Timer >= 1f)
+            {
+                
+                Button_Back.CrossFadeAlpha(1.0f, 0.5f, false);
+                Button_Back_bg.CrossFadeAlpha(1.0f, 0.5f, false);
+                Button_Back_Text.CrossFadeAlpha(1.0f, 0.5f, false);
+                //show results
+                
+            }
+        }
     }
+
+    void BackButtonControl()
+    {
+        if (StaticHolder.TimeOver == true)
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                Button_Back.fillAmount = _Timer * 0.5f;
+                _Timer += Time.deltaTime;
+                if (_Timer > 2f)
+                {
+                    SceneManager.LoadScene("_Scenes/GameScreen");
+                }
+            }
+
+            if (Input.GetButton("Fire1") == false && _Timer > 0)
+            {
+                Button_Back.fillAmount = _Timer * 0.5f;
+                _Timer -= Time.deltaTime * 2;
+            }
+        }
+
+        
+
+    }
+
 }
