@@ -94,6 +94,7 @@ public class UI_GameOverScreen : MonoBehaviour {
                 _Timer += Time.deltaTime;
                 if (_Timer > 2f)
                 {
+                    StaticHolder.Countdown_done = false;
                     SceneManager.LoadScene("_Scenes/GameScreen");
                 }
             }

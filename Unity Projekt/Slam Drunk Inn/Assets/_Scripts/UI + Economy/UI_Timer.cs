@@ -6,19 +6,18 @@ using UnityEngine.UI;
 public class UI_Timer : MonoBehaviour {
 
     public Text counterText;
-    public static float TimeLeft = 5f;
+    public static float TimeLeft = 60f;
     
 
 	// Use this for initialization
 	void Start () {
-        counterText = GetComponent<Text>();
-        
+        counterText = GetComponent<Text>();   
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(TimeLeft > 0)
+        if(TimeLeft > 0 && StaticHolder.Countdown_done == true)
         {
             TimeLeft -= Time.deltaTime;
             counterText.text = "" + Mathf.Round(TimeLeft);
@@ -28,9 +27,5 @@ public class UI_Timer : MonoBehaviour {
         {
             StaticHolder.TimeOver = true;
         }
-       
-
-        
-		
 	}
 }
