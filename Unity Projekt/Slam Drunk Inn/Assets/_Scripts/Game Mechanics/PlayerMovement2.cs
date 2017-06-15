@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement2 : MonoBehaviour {
 
@@ -10,10 +12,18 @@ public class PlayerMovement2 : MonoBehaviour {
 
     public Transform target;
 
+    public Image Button_fg;
+    public Image Button_bg;
+    public Image Button_text;
+
+    float Timer = 0f;
+    float _Timer = 0f;
+
     public void Update()
     {
-        
-        if(StaticHolder.Disoriented == false && StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true)
+        ButtonFillAmount();
+
+        if(StaticHolder.Disoriented == false && StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true && StaticHolder.Menu_active == false)
         {
             if (Input.GetButton("Fire1") && Hit_Glas == false)
             {
@@ -35,6 +45,21 @@ public class PlayerMovement2 : MonoBehaviour {
             }
         }
         
+    }
+
+    private void ButtonFillAmount()
+    {
+        _Timer += Time.deltaTime;
+        if (Input.GetButton("Fire1"))
+        {
+            Button_fg.fillAmount = _Timer * 8f;
+        }
+
+        if (Input.GetButton("Fire1") == false && _Timer > 0 && Button_fg.fillAmount >= 0)
+        {
+            Button_fg.fillAmount = 0;
+            _Timer -= Time.deltaTime * 3;
+        }
     }
 
     void RotateUp()

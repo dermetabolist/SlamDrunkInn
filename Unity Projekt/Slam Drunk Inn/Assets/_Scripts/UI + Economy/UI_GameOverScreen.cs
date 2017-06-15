@@ -8,7 +8,6 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     float lerpTime = 0.5f;
     float currentLerpTime;
-
     float moveDistance = -12f;
 
     Vector3 startPos;
@@ -27,10 +26,10 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     void Start()
     {
-        Button_Back.canvasRenderer.SetAlpha(0.0f);
-        Button_Back.fillAmount = 0f;
-        Button_Back_bg.canvasRenderer.SetAlpha(0.0f);
-        Button_Back_Text.canvasRenderer.SetAlpha(0.0f);
+        //Button_Back.canvasRenderer.SetAlpha(0.0f);
+        //Button_Back.fillAmount = 0f;
+        //Button_Back_bg.canvasRenderer.SetAlpha(0.0f);
+        //Button_Back_Text.canvasRenderer.SetAlpha(0.0f);
 
 
         startPos = transform.position;
@@ -39,9 +38,6 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     void Update()
     {
-        //back button input
-        BackButtonControl();
-       
         //background lerp
         if (StaticHolder.TimeOver == true)
         {
@@ -68,46 +64,19 @@ public class UI_GameOverScreen : MonoBehaviour {
             playsound = false;
         }
 
-        //blende button ein
-        if(StaticHolder.TimeOver == true)
-        {
-            Timer += Time.deltaTime;
-            if(Timer >= 1f)
-            {
+        ////blende button ein
+        //if(StaticHolder.TimeOver == true)
+        //{
+        //    Timer += Time.deltaTime;
+        //    if(Timer >= 1f)
+        //    {
                 
-                Button_Back.CrossFadeAlpha(1.0f, 0.5f, false);
-                Button_Back_bg.CrossFadeAlpha(1.0f, 0.5f, false);
-                Button_Back_Text.CrossFadeAlpha(1.0f, 0.5f, false);
-                //show results
+        //        Button_Back.CrossFadeAlpha(1.0f, 0.5f, false);
+        //        Button_Back_bg.CrossFadeAlpha(1.0f, 0.5f, false);
+        //        Button_Back_Text.CrossFadeAlpha(1.0f, 0.5f, false);
+        //        //show results
                 
-            }
-        }
+        //    }
+        //}
     }
-
-    void BackButtonControl()
-    {
-        if (StaticHolder.TimeOver == true)
-        {
-            if (Input.GetButton("Fire1"))
-            {
-                Button_Back.fillAmount = _Timer * 0.5f;
-                _Timer += Time.deltaTime;
-                if (_Timer > 2f)
-                {
-                    StaticHolder.Countdown_done = false;
-                    SceneManager.LoadScene("_Scenes/GameScreen");
-                }
-            }
-
-            if (Input.GetButton("Fire1") == false && _Timer > 0)
-            {
-                Button_Back.fillAmount = _Timer * 0.5f;
-                _Timer -= Time.deltaTime * 2;
-            }
-        }
-
-        
-
-    }
-
 }

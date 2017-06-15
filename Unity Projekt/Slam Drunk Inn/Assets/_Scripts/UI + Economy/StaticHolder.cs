@@ -23,6 +23,7 @@ public class StaticHolder : MonoBehaviour {
     public static float Dizzyness = 0f;
     public static float Score = 0f;
 
+    public static bool Menu_active = true;
     public static bool Countdown_done = false;
     public static bool TimeOver = false;
     public static bool Disoriented = false;
