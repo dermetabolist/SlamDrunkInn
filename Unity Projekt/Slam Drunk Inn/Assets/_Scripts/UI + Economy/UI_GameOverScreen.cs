@@ -8,7 +8,7 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     float lerpTime = 0.5f;
     float currentLerpTime;
-    float moveDistance = -12f;
+    float moveDistance = -9.2f;
 
     Vector3 startPos;
     Vector3 endPos;
@@ -26,12 +26,6 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     void Start()
     {
-        //Button_Back.canvasRenderer.SetAlpha(0.0f);
-        //Button_Back.fillAmount = 0f;
-        //Button_Back_bg.canvasRenderer.SetAlpha(0.0f);
-        //Button_Back_Text.canvasRenderer.SetAlpha(0.0f);
-
-
         startPos = transform.position;
         endPos = transform.position + transform.up * moveDistance;
     }
@@ -63,20 +57,5 @@ public class UI_GameOverScreen : MonoBehaviour {
             aud.PlayOneShot(scratch, 0.75f);
             playsound = false;
         }
-
-        ////blende button ein
-        //if(StaticHolder.TimeOver == true)
-        //{
-        //    Timer += Time.deltaTime;
-        //    if(Timer >= 1f)
-        //    {
-                
-        //        Button_Back.CrossFadeAlpha(1.0f, 0.5f, false);
-        //        Button_Back_bg.CrossFadeAlpha(1.0f, 0.5f, false);
-        //        Button_Back_Text.CrossFadeAlpha(1.0f, 0.5f, false);
-        //        //show results
-                
-        //    }
-        //}
     }
 }

@@ -14,6 +14,8 @@ public class UI_StartMenu : MonoBehaviour
     Vector3 startPos;
     Vector3 endPos;
 
+    public GameObject bottom;
+
 
     void Start()
     {
@@ -23,7 +25,7 @@ public class UI_StartMenu : MonoBehaviour
 
     void Update()
     {
-        //background lerp
+        //background lerp 
         if (StaticHolder.Menu_active == false)
         {
 
@@ -41,5 +43,6 @@ public class UI_StartMenu : MonoBehaviour
             float perc = currentLerpTime / lerpTime;
             transform.position = Vector3.Lerp(startPos, endPos, t);
         }
+
     }
 }
