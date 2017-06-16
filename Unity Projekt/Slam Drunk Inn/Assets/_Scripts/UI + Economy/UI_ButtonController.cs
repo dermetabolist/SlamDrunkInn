@@ -17,13 +17,15 @@ public class UI_ButtonController : MonoBehaviour {
 	void Start ()
     {
         Button_fg.fillAmount = 0;
-
     }
 	
 	
 	void Update ()
     {
-		if(StaticHolder.Menu_active == true)
+        print("Countdown_done:" + " " + StaticHolder.Countdown_done);
+        
+
+        if (StaticHolder.Menu_active == true)
         {
             //menu controls
             ButtonMenuControls();
@@ -65,10 +67,11 @@ public class UI_ButtonController : MonoBehaviour {
         {
             Button_fg.fillAmount = _Timer * 0.5f;
             _Timer += Time.deltaTime;
+
             if (_Timer > 2f)
             {
-                StaticHolder.Countdown_done = false;
-                StaticHolder.Menu_active = false;
+                //StaticHolder.Countdown_done = false;
+                //StaticHolder.Menu_active = false;
                 SceneManager.LoadScene("_Scenes/GameScreen");
             }
         }

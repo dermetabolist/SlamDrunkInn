@@ -27,6 +27,7 @@ public class UI_GameStartScreen : MonoBehaviour {
 
     void Start ()
     {
+        Timer = 0f;
         Countdown_Text.canvasRenderer.SetAlpha(1.0f);
         startPos = transform.position;
         endPos = transform.position + transform.up * moveDistance;

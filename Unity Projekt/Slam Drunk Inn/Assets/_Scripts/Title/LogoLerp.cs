@@ -15,19 +15,19 @@ public class LogoLerp : MonoBehaviour {
 
     void Start()
     {
-        startMarker = new Vector3(0, 2.45f, 0);
-        endMarker = new Vector3(0, 2f, 0);
+        startMarker = new Vector3(0, 2.3f, 0);
+        endMarker = new Vector3(0, 1.7f, 0);
         startTime = Time.time;
         journeyLength = Vector3.Distance(startMarker, endMarker);
     }
     void Update()
     {   
-        if(transform.position.y >= 2.45f)
+        if(transform.position.y >= 2.3f)
         {
             movedown = true;
             moveup = false;
         }
-        if (transform.position.y <= 2f)
+        if (transform.position.y <= 1.7f)
         {
             movedown = false;
             moveup = true;

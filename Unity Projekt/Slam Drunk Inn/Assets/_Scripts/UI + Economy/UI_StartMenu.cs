@@ -14,8 +14,6 @@ public class UI_StartMenu : MonoBehaviour
     Vector3 startPos;
     Vector3 endPos;
 
-    public GameObject bottom;
-
 
     void Start()
     {

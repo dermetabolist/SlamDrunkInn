@@ -1,0 +1,55 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Button_Animations : MonoBehaviour {
+
+    Animator anim;
+
+    void Start ()
+    {
+        anim = GetComponent<Animator>();
+    }
+	
+	// Update is called once per frame
+	void Update ()
+    {
+		if(StaticHolder.Menu_active == true && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
+        {
+            anim.SetBool("Menu_Active", true);
+            anim.SetBool("Countdown_Active", false);
+            anim.SetBool("Game_Active", false);
+            anim.SetBool("GameOver_Active", false);
+            
+        }
+
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
+        {
+            anim.SetBool("Menu_Active", false);
+            anim.SetBool("Countdown_Active", true);
+            anim.SetBool("Game_Active", false);
+            anim.SetBool("GameOver_Active", false);
+
+      
+        }
+
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == false)
+        {
+            anim.SetBool("Menu_Active", false);
+            anim.SetBool("Countdown_Active", false);
+            anim.SetBool("Game_Active", true);
+            anim.SetBool("GameOver_Active", false);
+
+            
+        }
+
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == true)
+        {
+            anim.SetBool("Menu_Active", false);
+            anim.SetBool("Countdown_Active", false);
+            anim.SetBool("Game_Active", false);
+            anim.SetBool("GameOver_Active", true);
+
+        }
+    }
+}
