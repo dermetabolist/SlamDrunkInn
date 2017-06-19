@@ -14,10 +14,11 @@ public class UI_ButtonController : MonoBehaviour {
     public Image Button_bg;
     public Image Button_text;
 
-    bool Button_activated;
+    public bool Button_activated;
 
 	void Start ()
     {
+        Button_activated = false;
         Button_fg.fillAmount = 0;
     }
 	
@@ -39,6 +40,11 @@ public class UI_ButtonController : MonoBehaviour {
         }
 
         
+    }
+
+    public void ButtonTouchControls()
+    {
+        Button_activated = !Button_activated;
     }
 
     private void ButtonMenuControls()
@@ -83,6 +89,8 @@ public class UI_ButtonController : MonoBehaviour {
             _Timer -= Time.deltaTime * 2;
         }
     }
+
+    
 
     
 }
