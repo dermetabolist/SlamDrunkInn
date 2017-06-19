@@ -14,6 +14,8 @@ public class UI_ButtonController : MonoBehaviour {
     public Image Button_bg;
     public Image Button_text;
 
+    bool Button_activated;
+
 	void Start ()
     {
         Button_fg.fillAmount = 0;
@@ -22,8 +24,7 @@ public class UI_ButtonController : MonoBehaviour {
 	
 	void Update ()
     {
-        print("Countdown_done:" + " " + StaticHolder.Countdown_done);
-        
+        ButtonTouchControls();
 
         if (StaticHolder.Menu_active == true)
         {
@@ -70,7 +71,7 @@ public class UI_ButtonController : MonoBehaviour {
 
             if (_Timer > 2f)
             {
-                //StaticHolder.Countdown_done = false;
+                StaticHolder.Countdown_done = !StaticHolder.Countdown_done;
                 //StaticHolder.Menu_active = false;
                 SceneManager.LoadScene("_Scenes/GameScreen");
             }

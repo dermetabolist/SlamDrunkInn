@@ -14,42 +14,40 @@ public class Button_Animations : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(StaticHolder.Menu_active == true && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
+        if (StaticHolder.Menu_active == true && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
         {
             anim.SetBool("Menu_Active", true);
-            anim.SetBool("Countdown_Active", false);
-            anim.SetBool("Game_Active", false);
-            anim.SetBool("GameOver_Active", false);
-            
+        }
+        else
+        {
+            anim.SetBool("Menu_Active", false);
         }
 
         if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
         {
-            anim.SetBool("Menu_Active", false);
             anim.SetBool("Countdown_Active", true);
-            anim.SetBool("Game_Active", false);
-            anim.SetBool("GameOver_Active", false);
-
-      
+        }
+        else
+        {
+            anim.SetBool("Countdown_Active", false);
         }
 
         if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == false)
         {
-            anim.SetBool("Menu_Active", false);
-            anim.SetBool("Countdown_Active", false);
             anim.SetBool("Game_Active", true);
-            anim.SetBool("GameOver_Active", false);
-
-            
+        }
+        else
+        {
+            anim.SetBool("Game_Active", false);
         }
 
         if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == true)
         {
-            anim.SetBool("Menu_Active", false);
-            anim.SetBool("Countdown_Active", false);
-            anim.SetBool("Game_Active", false);
             anim.SetBool("GameOver_Active", true);
-
+        }
+        else
+        {
+            anim.SetBool("GameOver_Active", false);
         }
     }
 }
