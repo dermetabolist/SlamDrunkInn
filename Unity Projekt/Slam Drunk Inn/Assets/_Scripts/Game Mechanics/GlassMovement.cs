@@ -18,11 +18,12 @@ public class GlassMovement : MonoBehaviour {
     public Rigidbody2D rb;
     public Transform Launcher;
     float projectileSpeed = 35f;
-    float rotSpeed = 15f;
+    float rotSpeed = 10f;
 
     bool InArea = false;
     bool playShatter = true;
     bool throwMe = true;
+    bool GlasDone = false;
 
     GameObject Head;
     Rigidbody2D rb2D;
@@ -32,11 +33,13 @@ public class GlassMovement : MonoBehaviour {
     public AudioClip shatter;
     public AudioClip swallow;
     public AudioSource audio;
+    float RandomPitch;
 
 	void Start ()
     {
         Timer = 0f;
         _Timer = 0f;
+        RandomPitch = 1;
         DestroyGameObject = false;
         _DestroyGameObject = false;
         Head = GameObject.Find("Head");
@@ -46,14 +49,15 @@ public class GlassMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime); //normale vorwärtsbewegung
+       
 
+        transform.Translate(Vector2.right * speed * Time.deltaTime); //normale vorwärtsbewegung
+        
         if(InArea == true)
         {
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1") && StaticHolder.IsHoldingGlas == false && GlasDone == false)
             {
                 this.transform.parent = Head.transform; //mache glas zum child
-                StaticHolder.IsHoldingGlas = true;
                 speed = 0f;
                 StaticHolder.Drinks++;
                 StaticHolder.Combo++;
@@ -63,24 +67,27 @@ public class GlassMovement : MonoBehaviour {
                 rb2D.simulated = false;
                 transform.position = new Vector3(-1, 0, 0);
                 DestroyGameObject = true;
+                
             }
         }
 
         if (DestroyGameObject == true)
         {
-            Timer += Time.deltaTime;
+            GlasDone = true;
 
-            if (Timer > .5) // rotiert glas
-            {
-                transform.Rotate(Vector3.forward * -rotSpeed);
-            }
+            Timer += Time.deltaTime;
+           
+            //if (Timer > .5) // rotiert glas
+            //{
+            //    transform.Rotate(Launcher.forward * -rotSpeed);
+            //}
 
             if (Timer > .5f && throwMe == true) //löst glas vom parent, addiert velocity
             {
                 this.transform.parent = null;
                 rb2D.simulated = true;
                 //rb.AddForce(Vector2.up * projectileSpeed, ForceMode2D.Impulse);
-                rb.velocity = new Vector3(2, 8, 0);
+                rb.velocity = new Vector3(6, 8, 0);
                 transform.Translate(Vector2.up * speed * Time.deltaTime);
             }
 
@@ -93,6 +100,8 @@ public class GlassMovement : MonoBehaviour {
             {
                 if (playShatter == true) //spielt den sound
                 {
+                    RandomPitch = (Random.Range(.5f, 1.5f));
+                    audio.pitch = RandomPitch;
                     audio.PlayOneShot(shatter, 0.75f);
                     playShatter = false;
                 }
@@ -114,11 +123,12 @@ public class GlassMovement : MonoBehaviour {
         }
     }
 
-    //
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Floor")
         {
+            RandomPitch = (Random.Range(.5f, 1.5f));
+            audio.pitch = RandomPitch;
             audio.PlayOneShot(shatter, 0.75f);
             _DestroyGameObject = true;
         }
@@ -130,6 +140,8 @@ public class GlassMovement : MonoBehaviour {
 
         if (collision.tag == "Edge")
         {
+            RandomPitch = (Random.Range(.5f, 1.5f));
+            audio.pitch = RandomPitch;
             audio.PlayOneShot(swoosh, 0.75f);
         }
 

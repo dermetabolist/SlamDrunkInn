@@ -16,7 +16,7 @@ public class PlayerHeadCollision : MonoBehaviour {
             Hit_Table = true;
         }
 
-        if(collision.tag == "Glas")
+        if(collision.tag == "Glas" && StaticHolder.IsHoldingGlas == false)
         {
             Hit_Glas_InArea = true;
         }
@@ -24,7 +24,8 @@ public class PlayerHeadCollision : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Hit_Glas_InArea = false;
+        
+        Hit_Glas_InArea = false;   
         Hit_Table = false;
     }
 

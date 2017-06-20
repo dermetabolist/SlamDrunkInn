@@ -11,6 +11,8 @@ public class StaticHolder : MonoBehaviour {
     public static int Combo = 0;
     public static int Disoriented_level = 0;
 
+    public static int Score;
+
     public static bool Menu_active = true;
     public static bool Countdown_done = false;
     public static bool TimeOver = false;

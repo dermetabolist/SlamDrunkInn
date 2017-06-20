@@ -44,7 +44,13 @@ public class PlayerMovement2 : MonoBehaviour {
                 RotateUp();
             }
         }
-        
+
+        if (StaticHolder.Disoriented)
+        {
+            RotateUp();
+            _RotateDown = false;
+        }
+
     }
 
     private void ButtonFillAmount()
