@@ -13,8 +13,16 @@ public class GlassMovement : MonoBehaviour {
     float thrust = 5f;
 
 
+    //throw stuff
+    Vector2 LastPos;
+    public Rigidbody2D rb;
+    public Transform Launcher;
+    float projectileSpeed = 35f;
+    float rotSpeed = 15f;
 
     bool InArea = false;
+    bool playShatter = true;
+    bool throwMe = true;
 
     GameObject Head;
     Rigidbody2D rb2D;
@@ -42,9 +50,10 @@ public class GlassMovement : MonoBehaviour {
 
         if(InArea == true)
         {
-            if(Input.GetButtonUp("Fire1"))
+            if (Input.GetButtonUp("Fire1"))
             {
                 this.transform.parent = Head.transform; //mache glas zum child
+                StaticHolder.IsHoldingGlas = true;
                 speed = 0f;
                 StaticHolder.Drinks++;
                 StaticHolder.Combo++;
@@ -60,12 +69,38 @@ public class GlassMovement : MonoBehaviour {
         if (DestroyGameObject == true)
         {
             Timer += Time.deltaTime;
-            if (Timer > .5f)
+
+            if (Timer > .5) // rotiert glas
             {
-                //this.transform.parent = null;
-                //rb2D.simulated = true;
-                //transform.Translate(Vector2.up * thrust * Time.deltaTime);
-                Destroy(gameObject);
+                transform.Rotate(Vector3.forward * -rotSpeed);
+            }
+
+            if (Timer > .5f && throwMe == true) //löst glas vom parent, addiert velocity
+            {
+                this.transform.parent = null;
+                rb2D.simulated = true;
+                //rb.AddForce(Vector2.up * projectileSpeed, ForceMode2D.Impulse);
+                rb.velocity = new Vector3(2, 8, 0);
+                transform.Translate(Vector2.up * speed * Time.deltaTime);
+            }
+
+            if(Timer > .75f) //schaltet velocity etc. wieder ab
+            {
+                throwMe = false;
+            }
+
+            if(Timer > 5.5f)
+            {
+                if (playShatter == true) //spielt den sound
+                {
+                    audio.PlayOneShot(shatter, 0.75f);
+                    playShatter = false;
+                }
+
+                if (Timer > 6.5f)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 

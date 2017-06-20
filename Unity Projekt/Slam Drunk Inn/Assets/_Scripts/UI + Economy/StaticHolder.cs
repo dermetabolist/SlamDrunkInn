@@ -11,21 +11,10 @@ public class StaticHolder : MonoBehaviour {
     public static int Combo = 0;
     public static int Disoriented_level = 0;
 
-
-
-    public static int DizzynessLevel = 0;
-    public static int GorgeLevel = 0;
-    
-    public static int Time = 60;
-    public static int Miss = 0;
-
-    public static float Drunkness = 0f;
-    public static float Dizzyness = 0f;
-    public static float Score = 0f;
-
     public static bool Menu_active = true;
     public static bool Countdown_done = false;
     public static bool TimeOver = false;
     public static bool Disoriented = false;
+    public static bool IsHoldingGlas = false;
     
 }
