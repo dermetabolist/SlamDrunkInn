@@ -14,6 +14,7 @@ public class UI_DrunknessLevel : MonoBehaviour {
 
     void Update()
     {
-        Drinks.text = "LVL: " + StaticHolder.DrunknessLevel;
+        print(StaticHolder.IsHoldingGlas);
+        Drinks.text = "" + StaticHolder.DrunknessLevel;
     }
 }

@@ -16,12 +16,12 @@ public class PlayerHeadGlasChecker : MonoBehaviour {
 	
 	void Update ()
     {
-        if(transform.childCount > 1)
+        if(transform.childCount > 2)
         {
             StaticHolder.IsHoldingGlas = true;
         }
         
-        if(transform.childCount <= 1)
+        if(transform.childCount <= 2)
         {
             StaticHolder.IsHoldingGlas = false;
         }
