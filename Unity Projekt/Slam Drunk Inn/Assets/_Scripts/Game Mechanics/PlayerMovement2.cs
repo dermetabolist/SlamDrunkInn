@@ -10,7 +10,7 @@ public class PlayerMovement2 : MonoBehaviour {
     bool Hit_Glas_InArea = false;
     public static bool Hit_Glas = false;
 
-    public Transform target;
+    //public Transform target;
 
     public Image Button_fg;
     public Image Button_bg;
