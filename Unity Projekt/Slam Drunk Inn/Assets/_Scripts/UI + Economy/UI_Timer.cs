@@ -27,5 +27,16 @@ public class UI_Timer : MonoBehaviour {
         {
             StaticHolder.TimeOver = true;
         }
+
+        ColourChange();
 	}
+
+    void ColourChange()
+    {
+        if(TimeLeft < 10)
+        {
+            counterText.color = Color.magenta;
+            //+Countdown sounds
+        }    
+    }
 }

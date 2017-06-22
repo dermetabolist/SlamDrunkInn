@@ -32,7 +32,7 @@ public class GlasSpawn : MonoBehaviour {
                 if (timer >= TimeMax)
                 {
                     //Random.Range(min, max) -> reguliert die gespawnten prefabs. erhöhen für verschiedene drinks
-                    Instantiate(pieces[UnityEngine.Random.Range(0, 1)], transform.position, transform.rotation);
+                    Instantiate(pieces[UnityEngine.Random.Range(0, 5)], transform.position, transform.rotation);
                     timer = 0f;
                 }
             
