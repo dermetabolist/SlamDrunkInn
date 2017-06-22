@@ -19,7 +19,7 @@ public class Eye_AnimationController : MonoBehaviour {
         }
         else
         {
-            anim.SetBool("Disoriented", true);
+            anim.SetBool("Disoriented", false);
         }
 
         if (PlayerHeadCollision.Hit_Table == true)
