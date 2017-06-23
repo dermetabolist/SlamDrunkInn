@@ -8,7 +8,7 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     float lerpTime = 0.5f;
     float currentLerpTime;
-    float moveDistance = -9.2f;
+    float moveDistance = -10.3f;
 
     Vector3 startPos;
     Vector3 endPos;
@@ -19,10 +19,6 @@ public class UI_GameOverScreen : MonoBehaviour {
 
     float Timer = 0f;
     float _Timer = 0f;
-
-    public Image Button_Back;
-    public Image Button_Back_bg;
-    public Text Button_Back_Text;
 
     void Start()
     {

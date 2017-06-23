@@ -7,7 +7,7 @@ public class UI_GameOverScreen_bottom : MonoBehaviour
 
     float lerpTime = 0.5f;
     float currentLerpTime;
-    float moveDistance = 3.65f;
+    float moveDistance = 8.62f;
 
     Vector3 startPos;
     Vector3 endPos;

@@ -8,7 +8,7 @@ public class UI_StartMenu_bottom : MonoBehaviour
 {
 
     //lerp stuff
-    float lerpTime = 0.5f;
+    float lerpTime = 1f;
     float currentLerpTime;
     float moveDistance = -12f;
     Vector3 startPos;

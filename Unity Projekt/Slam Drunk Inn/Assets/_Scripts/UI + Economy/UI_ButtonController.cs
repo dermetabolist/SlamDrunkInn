@@ -52,18 +52,18 @@ public class UI_ButtonController : MonoBehaviour {
         if (Input.GetButton("Fire1"))
         {
             _Timer += Time.deltaTime;
-            Button_fg.fillAmount = _Timer * 0.5f;
+            Button_fg.fillAmount = _Timer * 1f;
 
-            if (_Timer > 2f)
+            if (_Timer > 1f)
             {
                 StaticHolder.Countdown_done = false;
                 StaticHolder.Menu_active = false;
             }
         }
 
-        if (Input.GetButton("Fire1") == false && _Timer > 0)
+        if (Input.GetButton("Fire1") == false && _Timer > 1)
         {
-            Button_fg.fillAmount = _Timer * 0.5f;
+            Button_fg.fillAmount = _Timer * 1f;
             _Timer -= Time.deltaTime * 2;
         }
     }
