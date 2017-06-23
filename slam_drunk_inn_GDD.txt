@@ -1,4 +1,40 @@
-﻿**SLAM DRUNK INN™**
+﻿
+
+
+
+
+Slam Drunk Inn
+
+Inhalt
+1. Executive Summary	2
+High Concept	2
+Story	2
+Specifications:	2
+Features	2
+USP	2
+Related Games	2
+Development Goals	2
+Learning Goals	3
+Spielziel	3
+Sieg/Endbedingungen	3
+2. User Interface	3
+UI Elements	3
+Key Map	4
+Screen Flow	4
+Screen Description	4
+Save / Load	4
+3. Core Mechanics	4
+Core Loop	4
+Player Actions	4
+World Actions	5
+Upgrades (optional)	5
+4. Economy & Variables	6
+Level Progression	7
+Initial Setup	7
+
+
+
+
 
 1. Executive Summary
 
@@ -23,88 +59,88 @@ USP
 Related Games
 
 
-Design Goals
+Development Goals
 
-Stretch Goals
+Milestones
 01. Core Mechanic funktioniert
-02. Gameloop funktioniert
-03. Drunk State funktioniert
-04. Gameart + SoundFX fertig
+02. Drunk State funktioniert 
+03. Gameloop funktioniert 
+04. Gameart & SoundFX funktionieren
 05. Game Prototype funktioniert
 
 (optional)
 06. Kombo Feature
 07. Upgrade Feature
-08. Smartphone-Portierung mit Sofort-Download für die Präsentation
-09. Multiplayer
-10. Freischaltbare Spielfiguren
+08. Smartphone-Portierung
 
 Learning Goals
 
-- Development for mobile
+- Portierung für Android
 - Kontur-Shader
-- Minimal Filesize
+- File efficiency
 - High Score List
-- Visual FX
+- Post Processing Stack
 
 Spielziel
-
+Intermediate: Das Spiel so lange wie möglich aufrecht zu erhalten
+Final: Level 10 der >Drunkness erreichen
 Sieg/Endbedingungen
 
-Singleplayer:
+Ende
+Die Zeit ist abgelaufen
 
-Ende: Deine Gesundheit erreicht 0, du wirst bewusstlos.
-Zwischensieg: Habe einen neuen Highscore, wenn die Zeit abgelaufen ist.
-Sieg: Erreiche >Nirvana, bevor die Zeit abgelaufen ist.
+Zwischensieg
+Erreiche einen neuen Highscore, wenn die Zeit abgelaufen ist.
 
-Multiplayer:
-Ende: Der Spieler, dessen Gesundheit als erstes 0 erreicht, verliert.
-Sieg: Der Spieler, der nach Ablauf der Zeit am betrunkensten ist, gewinnt.
-
+Sieg
+Erreiche >Nirvana, bevor die Zeit abgelaufen ist.
 
 2. User Interface
 
 UI Elements
+Drunk-o-Meter
+Eine Skala, die den Drunk State anzeigt. 
+Besteht aus einer Leiste, die sich langsam füllt, und einer Zahl, die angibt, welches Drunkness-Level der Spieler momentan hat.
 
-Drunk-o-Assist (nur im Zielmodus sichtbar):
-Zielhilfe, mit der auf das Glas gezielt wird.
+Combo Counter
+Ein Zähler, der anzeigt, wie hoch deine Combo-Reihe momentan ist.
+Timer
+Zeigt an, wieviel Zeit noch verbleibt.
+Score
+Der Punktezähler zeigt die bereits gesammelten
 
-Drunk-o-Meter:
-Eine Skala, die den Drunk State anzeigt.
 
 (optional)
-
-Gorge-Gauge:
-Eine Skala, die anzeigt, wie hoch dein Courage-Wert momentan ist.
-
-Combo Counter:
-Zeigt an, wie hoch deine Combo-Wert momentan ist.
-
+Gorge-Gauge
+Eine Skala, die anzeigt, wie hoch dein Gorge-Wert momentan ist. 
+Besteht aus einer Leiste, die sich langsam füllt, und einer Zahl, die angibt, welches Gorge-Level der Spieler momentan hat.
 High Score
-Der höchste, jemals erreicht Punktestand.
+Der höchste, jemals erreicht Punktestand wird als Zahl abgebildet.
 
-Points Piler: 
-Der Punktezähler zeigt die bereits gesammelten
 
 
 Key Map
 
-Knopf 1: 
-Hold: Auf Glas zielen & Restart (Game Over Screen)
-Release: Trinken & Glas wegwerfen
+Knopf 1 
+
+Game Screen
+Halten: Kopf zum Glas bewegen 
+Loslassen: Kopf wieder zur Ausgangsposition zurückbewegen / trinken
+
+Game Over Screen
+Buttons bedienen
+
+Menu Screen
+
 
 Screen Flow
 
-Menu Screen
-Single Player Screen
+Menu Screen -> Game Screen -> Game Over Screen
 
-(optional)
-
-Multiplayer Screen
 Screen Description
 
 Save / Load
-High Score Liste
+High Score-Liste
 
 3. Core Mechanics
 
@@ -126,7 +162,7 @@ Wenn das Glas getroffen wird, wird das Glas im Maul festgehalten, der Kopf wiede
 Miss
 Wird das Glas verfehlt, so schlägt der Kopf auf den Tisch und der Spieler wechselt in >Disoriented State.
 
-World
+World Actions
 
 Piling Points
 Für verschiedene Dinge werden Punkte addiert (im Verhältnis):
@@ -157,10 +193,7 @@ Erreicht die Drunkness Wert 100% gehst du ins Nirvana über. Das Spiel ist beend
 Time Is Over
 Sinkt die Zeit auf 0 ist das Spiel verloren.
 
-
-(optional)
-
-Upgrades
+Upgrades (optional)
 Für jedes Gorge Level kann ein Upgrade freigeschaltet werden. Upgrades können mehrfach verstärkt werden.
 
 Harder Drinks
