@@ -25,7 +25,7 @@ public class UI_TimeAddCounter : MonoBehaviour {
         if (TimeAddCounter_showPoints)
         {
             TimeAddText.CrossFadeAlpha(1, 0f, false);
-            TimeAddText.text = "+" + Mathf.Round(StaticHolder.CollectedTime);
+            TimeAddText.text = "+" + Mathf.Round(StatCalculator.TimeAdd);
             StaticHolder.CollectedTime = 0f;
             TimeAddCounter_showPoints = false;
         }

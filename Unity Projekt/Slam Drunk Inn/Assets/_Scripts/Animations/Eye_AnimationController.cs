@@ -22,7 +22,7 @@ public class Eye_AnimationController : MonoBehaviour {
             anim.SetBool("Disoriented", false);
         }
 
-        if (PlayerHeadCollision.Hit_Table == true)
+        if (CamShakeSimple.CameraIsShaking == true)
         {
             anim.SetBool("HitTable", true);
         }

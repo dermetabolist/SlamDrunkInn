@@ -11,6 +11,8 @@ public class DrunknessFX : MonoBehaviour {
     public PostProcessingProfile Drunkness;
 
     float Random_chromaticAbberation_intensity;
+    float chromaticAbberationTemp;
+
     float Random_aperture;
     float Random_frameBleeding;
     float Random_bloom;
@@ -18,7 +20,12 @@ public class DrunknessFX : MonoBehaviour {
     float Random_grain;
     float Random_vignette;
 
-    float Random_Time;
+    float Random_Time1;
+    float Random_Time2;
+    float Random_Time3;
+    float Random_Time4;
+    float Random_Time5;
+
     float Random_TimeScale;
     float Random_Pitch;
 
@@ -26,12 +33,15 @@ public class DrunknessFX : MonoBehaviour {
     float Random_Color2;
     float Random_Color3;
 
-    float Timer = 0f;
+    float Timer1 = 0f;
+    float Timer2 = 0f;
+    float Timer3 = 0f;
+    float Timer4 = 0f;
+    float Timer5 = 0f;
 
     public AudioMixer Master;
 
     Color Random_Col;
-    public GameObject LensAbberations;
 
     void OnEnable()
     {
@@ -50,7 +60,12 @@ public class DrunknessFX : MonoBehaviour {
 
     private void Start()
     {
-        Random_Time = 5f;
+        Random_Time1 = 5f;
+        Random_Time2 = 5f;
+        Random_Time3 = 5f;
+        Random_Time4 = 5f;
+        Random_Time5 = 5f;
+
         Random_TimeScale = 1f;
         Random_aperture = 12f;
         Random_bloom = 0f;
@@ -79,47 +94,80 @@ public class DrunknessFX : MonoBehaviour {
         
         if(StaticHolder.TimeOver == false) //führe alles aus, solange die zeit abläuft
         {
-            Timer += Time.deltaTime;
-            if (Timer > Random_Time)
+            Timer1 += Time.deltaTime;
+            Timer2 += Time.deltaTime;
+            Timer3 += Time.deltaTime;
+            Timer4 += Time.deltaTime;
+            Timer5 += Time.deltaTime;
+
+            if (Timer1 > Random_Time1)
             {
-                Random_Time = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel)); //Zufällige Zeit zwischen 1 & 10 - Drunk Level
-
-
-                Random_chromaticAbberation_intensity = UnityEngine.Random.Range(0f, ((StaticHolder.DrunknessLevel) / 10f)); //
-                Random_aperture = UnityEngine.Random.Range(12, 12 - StaticHolder.DrunknessLevel/2f);
+                Random_Time1 = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel)); //Zufällige Zeit zwischen 1 & 10 - Drunk Level
+                Random_chromaticAbberation_intensity = UnityEngine.Random.Range(0f, ((StaticHolder.DrunknessLevel) / 10f)); 
                 Random_frameBleeding = StaticHolder.DrunknessLevel*0.1f;
-                Random_bloom = UnityEngine.Random.Range(0f, (StaticHolder.DrunknessLevel / 4f));
-                Random_Saturation = UnityEngine.Random.Range(1 - (StaticHolder.DrunknessLevel * 0.1f), 1 + (StaticHolder.DrunknessLevel * 0.1f));
-                Random_grain = StaticHolder.DrunknessLevel * 0.1f;
-                Random_vignette = UnityEngine.Random.Range(0, StaticHolder.DrunknessLevel * 0.05f);
+                Random_grain = StaticHolder.DrunknessLevel * 0.1f;   
                 Random_TimeScale = UnityEngine.Random.Range(1f - ((StaticHolder.DrunknessLevel) / 10f), 1f + ((StaticHolder.DrunknessLevel) / 20f));
                 Random_Pitch = ((Random_TimeScale));
-                Timer = 0f;
-            } 
+                Timer1 = 0f;
+            }
+            if (Timer2 > Random_Time2)
+            {
+                Random_Time2 = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+                Random_aperture = UnityEngine.Random.Range(12, 12 - StaticHolder.DrunknessLevel / 2f);
+                Timer2 = 0f;
+            }
+            if (Timer3 > Random_Time3)
+            {
+                Random_Time3 = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+                Random_bloom = UnityEngine.Random.Range(0f, (StaticHolder.DrunknessLevel / 4f));
+                Timer3 = 0f;
+            }
+            if (Timer4 > Random_Time4)
+            {
+                Random_Time4 = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+                Random_Saturation = UnityEngine.Random.Range(1 - (StaticHolder.DrunknessLevel * 0.1f), 1 + (StaticHolder.DrunknessLevel * 0.1f));
+                Timer4 = 0f;
+            }
+            if (Timer5 > Random_Time5)
+            {
+                Random_Time5 = UnityEngine.Random.Range(1f, 10f - (StaticHolder.DrunknessLevel));
+                Random_vignette = UnityEngine.Random.Range(0, StaticHolder.DrunknessLevel * 0.05f);
+                Timer5 = 0f;
+            }
         }
 
-        else //normalisiere alle werte
+        if (StaticHolder.TimeOver == true || StaticHolder.GameWon == true) //normalisiere alle werte
         {
             Time.timeScale = 1f;
             Random_TimeScale = 1;
             Random_chromaticAbberation_intensity = 0;
-            Random_aperture = 3;
+            Random_aperture = 12;
             Random_bloom = 0f;
             Random_grain = 0f;
             Random_vignette = 0;
             Random_Saturation = 1;
         }
 
-        
+        MotionBlur();
+        Grain();
+
+        if (StaticHolder.DrunknessLevel > 0)
+        {
             ChromaticAbberation();
+            
+        }
+        if (StaticHolder.DrunknessLevel > 1)
+        {
             DepthOfField();
-            MotionBlur();
+            TimeScale();
+            SetPitch(1);
+        }
+        if (StaticHolder.DrunknessLevel > 2)
+        {
             Bloom();
             Saturation();
-            Grain();
             Vignette();
-            TimeScale();
-            SetPitch(1);            
+        }                      
     }
 
 
@@ -128,11 +176,6 @@ public class DrunknessFX : MonoBehaviour {
         var chromaberration = Drunkness.chromaticAberration.settings;
         chromaberration.intensity = 0f + Random_chromaticAbberation_intensity;
         Drunkness.chromaticAberration.settings = chromaberration;
-
-        if(chromaberration.intensity > Random_chromaticAbberation_intensity)
-        {
-
-        }
     }
 
     void DepthOfField()

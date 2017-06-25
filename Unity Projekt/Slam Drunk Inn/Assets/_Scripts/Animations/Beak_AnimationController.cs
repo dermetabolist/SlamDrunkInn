@@ -13,7 +13,7 @@ public class Beak_AnimationController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") || StaticHolder.IsHoldingGlas)
         {
             anim.SetBool("OpenMouth", true);
         }

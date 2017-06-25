@@ -25,7 +25,7 @@ public class GlasSpawn : MonoBehaviour {
 	
 	void Update ()
     {
-        if (StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true)
+        if (StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true && StaticHolder.GameWon == false)
         {
             timer += (Time.deltaTime * Time.timeScale);
             float TimeMax = (1 - (Time.timeSinceLevelLoad / 250));

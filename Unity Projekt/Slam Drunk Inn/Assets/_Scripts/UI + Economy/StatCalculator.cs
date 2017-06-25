@@ -7,9 +7,11 @@ public class StatCalculator : MonoBehaviour
 {
     public AudioSource aud;
     public AudioClip Timeget;
+    public AudioClip Level10;
 
-    float TimeAdd;
+    public static float TimeAdd;
     bool LooseHealth;
+    bool playSound = true;
     float Timer;
 
     private void Start()
@@ -20,16 +22,18 @@ public class StatCalculator : MonoBehaviour
         StaticHolder.Drinks_sinceLevelStart = 0;
         StaticHolder.Combo = 0;
         UI_Timer.TimeLeft = 60;
+        StaticHolder.CollectedTime = 0f;
         StaticHolder.DrunknessLevel_threshold = 10;
     }
 
     private void Update()
     {
-        TimeAdd = StaticHolder.DrunknessLevel + StaticHolder.CollectedTime + (StaticHolder.Combo / 10); //definiert, wieviel zeit man zurückgewinnt
+        TimeAdd = /*StaticHolder.DrunknessLevel + */ StaticHolder.CollectedTime * (1 + (StaticHolder.Combo / 20)); //definiert, wieviel zeit man zurückgewinnt
 
         DrunknessLevelCalculator();
         DrunknessLevel_Threshold_Calculator();
         DisorientedHealth_Calculator();
+        GameWinCalculator();
     }
 
     private void DisorientedHealth_Calculator()
@@ -52,7 +56,7 @@ public class StatCalculator : MonoBehaviour
             StaticHolder.Disoriented = true;
         }
 
-        if(StaticHolder.Disoriented == true && Timer > 3)
+        if(StaticHolder.Disoriented == true && Timer > 2)
         {
             StaticHolder.Disoriented = false;
             StaticHolder.Disoriented_level = 0;
@@ -82,5 +86,15 @@ public class StatCalculator : MonoBehaviour
             }
         }
         
+    }
+
+    void GameWinCalculator()
+    {
+        if(StaticHolder.DrunknessLevel == 10 && !aud.isPlaying && playSound)
+        {
+            StaticHolder.GameWon = true;
+            aud.PlayOneShot(Level10, 1f);
+            playSound = false;
+        }
     }
 }

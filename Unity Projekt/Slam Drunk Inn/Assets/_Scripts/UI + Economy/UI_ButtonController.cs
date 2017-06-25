@@ -39,7 +39,13 @@ public class UI_ButtonController : MonoBehaviour {
             ButtonGameOverControls();
         }
 
-        
+        if (StaticHolder.GameWon == true && StaticHolder.Menu_active == false)
+        {
+            //game over controls
+            ButtonGameOverControls();
+        }
+
+
     }
 
     public void ButtonTouchControls()

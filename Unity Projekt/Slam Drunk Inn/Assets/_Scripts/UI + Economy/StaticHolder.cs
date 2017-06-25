@@ -18,6 +18,7 @@ public class StaticHolder : MonoBehaviour
     public static bool Menu_active = true;
     public static bool Countdown_done = false;
     public static bool TimeOver = false;
+    public static bool GameWon = false;
     public static bool Disoriented = false;
     public static bool IsHoldingGlas = false;
     
