@@ -33,10 +33,10 @@ public class UI_Timer : MonoBehaviour {
 
     void ColourChange()
     {
-        if(TimeLeft <= 9)
-        {
-            counterText.color = Color.magenta;
-            //+Countdown sounds
-        }    
+        //if(TimeLeft <= 9)
+        //{
+        //    counterText.color = Color.magenta;
+        //    //+Countdown sounds
+        //}    
     }
 }

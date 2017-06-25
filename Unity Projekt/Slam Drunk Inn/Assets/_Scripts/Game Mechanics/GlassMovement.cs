@@ -65,7 +65,7 @@ public class GlassMovement : MonoBehaviour {
                 StaticHolder.Score += 100 * StaticHolder.Combo;
                 audio.PlayOneShot(swallow, 0.75f);
                 rb2D.simulated = false;
-                transform.position = new Vector3(-1, 0, 0);
+                transform.position = new Vector3(-1, -1, 0);
                 DestroyGameObject = true;
                 
             }

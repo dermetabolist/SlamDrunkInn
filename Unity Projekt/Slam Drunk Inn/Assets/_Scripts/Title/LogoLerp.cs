@@ -14,8 +14,16 @@ public class LogoLerp : MonoBehaviour {
 
     protected void Update()
     {
-        float distance = Mathf.Sin(Time.timeSinceLevelLoad);
-        transform.position = startPos + Vector3.up * (distance/4);
+        if(StaticHolder.Menu_active)
+        {
+            float distance = Mathf.Sin(Time.timeSinceLevelLoad);
+            transform.position = startPos + Vector3.up * (distance / 4);
+        }
+        else
+        {
+            transform.position = transform.position;
+        }
+        
     }
 }
 
