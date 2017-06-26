@@ -14,7 +14,7 @@ public class Button_Animations : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (StaticHolder.Menu_active == true && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
+        if (StaticHolder.Menu_active == true && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false && StaticHolder.GameWon == false)
         {
             anim.SetBool("Menu_Active", true);
         }
@@ -23,7 +23,7 @@ public class Button_Animations : MonoBehaviour {
             anim.SetBool("Menu_Active", false);
         }
 
-        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false)
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == false && StaticHolder.TimeOver == false && StaticHolder.GameWon == false)
         {
             anim.SetBool("Countdown_Active", true);
         }
@@ -32,7 +32,7 @@ public class Button_Animations : MonoBehaviour {
             anim.SetBool("Countdown_Active", false);
         }
 
-        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == false)
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == false && StaticHolder.GameWon == false)
         {
             anim.SetBool("Game_Active", true);
         }
@@ -41,7 +41,7 @@ public class Button_Animations : MonoBehaviour {
             anim.SetBool("Game_Active", false);
         }
 
-        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == true)
+        if (StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == true && StaticHolder.GameWon == false || StaticHolder.Menu_active == false && StaticHolder.Countdown_done == true && StaticHolder.TimeOver == false && StaticHolder.GameWon == true)
         {
             anim.SetBool("GameOver_Active", true);
         }

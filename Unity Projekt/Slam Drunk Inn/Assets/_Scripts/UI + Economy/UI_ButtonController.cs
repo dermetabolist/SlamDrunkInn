@@ -39,7 +39,13 @@ public class UI_ButtonController : MonoBehaviour {
             ButtonGameOverControls();
         }
 
-        
+        if (StaticHolder.GameWon == true && StaticHolder.Menu_active == false)
+        {
+            //game over controls
+            ButtonGameOverControls();
+        }
+
+
     }
 
     public void ButtonTouchControls()
@@ -61,7 +67,7 @@ public class UI_ButtonController : MonoBehaviour {
             }
         }
 
-        if (Input.GetButton("Fire1") == false && _Timer > 1)
+        if (Input.GetButton("Fire1") == false && _Timer > 0)
         {
             Button_fg.fillAmount = _Timer * 1f;
             _Timer -= Time.deltaTime * 2;
@@ -72,10 +78,10 @@ public class UI_ButtonController : MonoBehaviour {
     {
         if (Input.GetButton("Fire1"))
         {
-            Button_fg.fillAmount = _Timer * 0.5f;
+            Button_fg.fillAmount = _Timer * 1f;
             _Timer += Time.deltaTime;
 
-            if (_Timer > 2f)
+            if (_Timer > 1f)
             {
                 StaticHolder.Countdown_done = !StaticHolder.Countdown_done;
                 //StaticHolder.Menu_active = false;
@@ -85,7 +91,7 @@ public class UI_ButtonController : MonoBehaviour {
 
         if (Input.GetButton("Fire1") == false && _Timer > 0 && Button_fg.fillAmount >= 0)
         {
-            Button_fg.fillAmount = _Timer * 0.5f;
+            Button_fg.fillAmount = _Timer * 1f;
             _Timer -= Time.deltaTime * 2;
         }
     }

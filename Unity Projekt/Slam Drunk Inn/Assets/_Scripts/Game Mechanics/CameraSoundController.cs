@@ -8,6 +8,7 @@ public class CameraSoundController : MonoBehaviour {
     public AudioClip menu_theme;
     public AudioClip main_theme;
     public AudioClip game_over;
+    public AudioClip game_won;
 
     bool changeAudio = true;
     bool playTheme = true;
@@ -30,9 +31,15 @@ public class CameraSoundController : MonoBehaviour {
             playIntro= false;
         }
 
+        if(StaticHolder.Menu_active == false && StaticHolder.Countdown_done == false)
+        {
+            aud.volume -= (Time.deltaTime * 0.2f);
+        }
+
         if(StaticHolder.Countdown_done && playTheme == true)
         {
             aud.clip = main_theme;
+            aud.volume = 1;
             aud.Play();
             playTheme = false;
         }
@@ -41,8 +48,18 @@ public class CameraSoundController : MonoBehaviour {
         {
             AudioSource audio = GetComponent<AudioSource>();
             aud.clip = game_over;
+            aud.volume = 0.75f;
             aud.Play();
             changeAudio = false;
         }
-	}
+
+        if (StaticHolder.TimeOver == false && StaticHolder.GameWon == true && changeAudio == true)
+        {
+            AudioSource audio = GetComponent<AudioSource>();
+            aud.clip = game_won;
+            aud.volume = 0.75f;
+            aud.Play();
+            changeAudio = false;
+        }
+    }
 }

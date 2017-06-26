@@ -6,7 +6,7 @@ public class Background_Movement_Sky : MonoBehaviour {
 
     Vector3 startMarker;
     Vector3 endMarker;
-    float speed = .15F;
+    float speed = .20F;
     private float startTime;
     private float journeyLength;
 

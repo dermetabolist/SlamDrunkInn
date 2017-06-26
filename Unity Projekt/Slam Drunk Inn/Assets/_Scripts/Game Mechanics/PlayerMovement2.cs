@@ -23,7 +23,7 @@ public class PlayerMovement2 : MonoBehaviour {
     {
         ButtonFillAmount();
 
-        if(StaticHolder.Disoriented == false && StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true && StaticHolder.Menu_active == false)
+        if(StaticHolder.Disoriented == false && StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true && StaticHolder.Menu_active == false && StaticHolder.GameWon == false)
         {
             if (Input.GetButton("Fire1") && Hit_Glas == false)
             {
