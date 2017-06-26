@@ -19,6 +19,7 @@ public class UI_GameWinScreen : MonoBehaviour {
     {
         startPos = transform.position;
         endPos = transform.position + transform.up * moveDistance;
+        StaticHolder.GameWon = false;
     }
 
 

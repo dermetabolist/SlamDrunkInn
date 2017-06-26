@@ -26,6 +26,7 @@ public class GlassMovement : MonoBehaviour {
     bool playShatter = true;
     bool throwMe = true;
     bool GlasDone = false;
+    bool playSound = true;
 
     GameObject Head;
     Rigidbody2D rb2D;
@@ -71,8 +72,6 @@ public class GlassMovement : MonoBehaviour {
                 StaticHolder.Combo++;
                 StaticHolder.Drinks_sinceLevelStart++;
                 StaticHolder.Score += 100 * StaticHolder.Combo;
-                audio.PlayOneShot(swallow, 1f);
-                
                 rb2D.simulated = false;
                 transform.localPosition = new Vector3(-0.4f, 2.71f, 0);
                 DestroyGameObject = true;
@@ -94,10 +93,14 @@ public class GlassMovement : MonoBehaviour {
                 transform.Rotate(Vector3.forward * RandRotSpeed);
                 throwMe = false;
             }
-            if(Timer > .5)
+            if(Timer > .5 && playSound)
             {
                 anim.SetBool("empty", true);
+                audio.PlayOneShot(swallow, 1f);
+                playSound = false;
             }
+
+
 
             if (Timer > .75f && throwMe == true) //löst glas vom parent, addiert velocity
             {
@@ -112,6 +115,7 @@ public class GlassMovement : MonoBehaviour {
             {
                 throwMe = false;
             }
+        
 
             if (Timer > 5.5f)
             {
@@ -119,7 +123,7 @@ public class GlassMovement : MonoBehaviour {
                 {
                     RandomPitch = (Random.Range(.5f, 1.5f));
                     audio.pitch = RandomPitch;
-                    audio.PlayOneShot(shatter, 0.75f);
+                    audio.PlayOneShot(shatter, 0.5f);
                     playShatter = false;
                 }
 
@@ -146,7 +150,7 @@ public class GlassMovement : MonoBehaviour {
         {
             RandomPitch = (Random.Range(.5f, 1.5f));
             audio.pitch = RandomPitch;
-            audio.PlayOneShot(shatter, 0.75f);
+            audio.PlayOneShot(shatter, 0.5f);
             _DestroyGameObject = true;
         }
 

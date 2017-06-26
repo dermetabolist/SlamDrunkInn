@@ -15,20 +15,23 @@ public class GlasSpawn : MonoBehaviour {
     public GameObject Drink06;
 
     float timer = 0f;
+    float _timer = 0f;
     float RandomValue;
     bool CalculateRandomValue;
 
     void Start ()
     {
         RandomValue = 1f;
+        _timer = 0f;
 	}
 	
 	void Update ()
     {
         if (StaticHolder.TimeOver == false && StaticHolder.Countdown_done == true && StaticHolder.GameWon == false)
         {
+            _timer += Time.deltaTime;
             timer += (Time.deltaTime * Time.timeScale);
-            float TimeMax = (1 - (Time.timeSinceLevelLoad / 250));
+            float TimeMax = (1 - (StaticHolder.DrunknessLevel / 20));
 
             if (timer >= TimeMax && CalculateRandomValue)
             {
