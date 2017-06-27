@@ -22,7 +22,8 @@ public class CamShakeSimple : MonoBehaviour
         InvokeRepeating("CameraShake", 0, .01f);
         Invoke("StopShaking", .5f);
         StaticHolder.Combo = 0;
-        StaticHolder.Combo_Multiplier = 0;
+        StaticHolder.Combo_Multiplier = 1;
+        StaticHolder.CollectedTime = 0f;
         
     }
 

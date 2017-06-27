@@ -27,6 +27,8 @@ public class UI_TimeAddCounter : MonoBehaviour {
         TimeAddText = TimeAddCounter.GetComponent<Text>();
         ComboMultiplierText = ComboMultiplier.GetComponent<Text>();
         TimeGain_Scale = TimeGain_Scale.GetComponent<Image>();
+        TimeAddCounter_Splashtext = TimeAddCounter_Splash.GetComponent<Text>();
+        TimeAddCounter_Splashtext.CrossFadeAlpha(0, 0, false);
         TimeGain_Scale.fillAmount = 0;
         opacity = TimeAddText.color;
         TimeAddText.text = "";
@@ -37,21 +39,25 @@ public class UI_TimeAddCounter : MonoBehaviour {
         
         TimeAddText.text = "+" + StaticHolder.CollectedTime_accumulated;
         ComboMultiplierText.text = "x" + StaticHolder.Combo_Multiplier;
-
         TimeGain_Scale.fillAmount = StaticHolder.CollectedTime;
 
+      
+            if (TimeAddCounter_showPoints)
+            {
+                
+            
+                TimeAddCounter_Splashtext.CrossFadeAlpha(1, 0f, false);
+                TimeAddCounter_Splashtext.text = "+" + StaticHolder.CollectedTime_accumulated * StaticHolder.Combo_Multiplier;
+                TimeAddCounter_showPoints = false;
+            
+            
+            }
 
-        if (TimeAddCounter_showPoints)
-        {
-            TimeAddCounter_Splashtext.CrossFadeAlpha(1, 0f, false);
-            TimeAddCounter_Splashtext.text = "+" + StaticHolder.CollectedTime_accumulated;
-            StaticHolder.CollectedTime = 0f;
-            TimeAddCounter_showPoints = false;
-        }
-
-        if (!TimeAddCounter_showPoints)
-        {
-            TimeAddCounter_Splashtext.CrossFadeAlpha(0, .75f, false);
-        }
+            if (!TimeAddCounter_showPoints)
+            {
+                TimeAddCounter_Splashtext.CrossFadeAlpha(0, .75f, false);
+            }
+        
+        
     }
 }
