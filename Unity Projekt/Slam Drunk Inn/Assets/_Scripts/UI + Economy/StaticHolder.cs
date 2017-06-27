@@ -10,8 +10,10 @@ public class StaticHolder : MonoBehaviour
     public static int DrunknessLevel = 0;
     public static int DrunknessLevel_threshold = 0;
     public static int Combo = 0;
+    public static int Combo_Multiplier = 1;
     public static int Disoriented_level = 0;
     public static float CollectedTime = 0f;
+    public static int CollectedTime_accumulated = 0;
 
     public static int Score;
 

@@ -24,16 +24,38 @@ public class StatCalculator : MonoBehaviour
         UI_Timer.TimeLeft = 60;
         StaticHolder.CollectedTime = 0f;
         StaticHolder.DrunknessLevel_threshold = 10;
+        StaticHolder.CollectedTime_accumulated = 0;
+        StaticHolder.Combo_Multiplier = 1;
     }
 
     private void Update()
     {
-        TimeAdd = /*StaticHolder.DrunknessLevel + */ StaticHolder.CollectedTime * (1 + (StaticHolder.Combo / 20)); //definiert, wieviel zeit man zurückgewinnt
-
+        TimeAdd = StaticHolder.CollectedTime_accumulated * StaticHolder.Combo_Multiplier;
         DrunknessLevelCalculator();
         DrunknessLevel_Threshold_Calculator();
         DisorientedHealth_Calculator();
+        TimeAddAccumulated();
+        ComboMultiplier();
         GameWinCalculator();
+    }
+
+    private void ComboMultiplier()
+    {
+        if(StaticHolder.Combo == 10 + StaticHolder.Combo_Multiplier)
+        {
+            StaticHolder.Combo_Multiplier++;
+            StaticHolder.Combo = 0;
+        }
+
+    }
+
+    private void TimeAddAccumulated()
+    {
+        if(StaticHolder.CollectedTime >=1)
+        {
+            StaticHolder.CollectedTime_accumulated++;
+            StaticHolder.CollectedTime--;
+        }
     }
 
     private void DisorientedHealth_Calculator()
@@ -76,9 +98,8 @@ public class StatCalculator : MonoBehaviour
             if (StaticHolder.Drinks_sinceLevelStart >= StaticHolder.DrunknessLevel_threshold)
             {
                 StaticHolder.DrunknessLevel++;
-
-                //StaticHolder.Score += 50 * StaticHolder.Combo;
                 UI_Timer.TimeLeft += TimeAdd;  //time gain
+                StaticHolder.CollectedTime_accumulated = 0;
                 UI_TimeAddCounter.TimeAddCounter_showPoints = true;
                 aud.PlayOneShot(Timeget, 1f);
                 StaticHolder.Drinks_sinceLevelStart = 0;
